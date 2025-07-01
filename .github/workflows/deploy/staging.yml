@@ -2,7 +2,9 @@ name: Deploy Frontend to S3 + CloudFront (Staging)
 
 on:
   push:
-    branches: [ feat/refactor-deployment-workflows, staging ]
+    branches:
+      - staging
+      - 'feat/refactor-deployment-workflows'
 
 jobs:
   deploy-staging:

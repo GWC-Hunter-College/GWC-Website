@@ -1,4 +1,4 @@
-name: Deploy Frontend to S3 + CloudFront (Staging)
+name: Deploy Frontend to S3 + CloudFront (Production)
 
 on:
   push:
