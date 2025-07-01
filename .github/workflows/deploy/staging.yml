@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - staging
-      - 'feat/refactor-deployment-workflows'
 
 jobs:
   deploy-staging:
