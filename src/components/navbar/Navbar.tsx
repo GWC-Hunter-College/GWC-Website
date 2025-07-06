@@ -9,10 +9,15 @@ const Navbar: React.FC = () => {
       <img src={Logo} alt="GWC Logo" />
       <nav className="navbar">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/initiatives">Initiatives</a></li>
-          <li><a href="/events">Events</a></li>
-          <li><a href="/membership">Membership</a></li>
+          <li>✦</li>
+          <li><a href="/">home</a></li>
+          <li>✦</li>
+          <li><a href="/initiatives">initiatives</a></li>
+          <li>✦</li>
+          <li><a href="/events">events</a></li>
+          <li>✦</li>
+          <li><a href="/membership">membership</a></li>
+          <li>✦</li>
         </ul>
       </nav>
     </div>
