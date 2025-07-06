@@ -1,0 +1,27 @@
+.navbar-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 15px;
+}
+
+.navbar-wrapper img {
+    width: 50px; /* Adjust as needed */
+    height: 50px;
+    object-fit: contain;
+    margin-right: 1.5rem;
+}
+
