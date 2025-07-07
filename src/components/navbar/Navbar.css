@@ -1,0 +1,37 @@
+.navbar-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 15px;
+    font-style: italic;
+}
+
+nav a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navbar-wrapper img {
+    width: 50px; /* Adjust as needed */
+    height: 50px;
+    object-fit: contain;
+    margin-right: 1.5rem;
+}
+
