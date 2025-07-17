@@ -1,12 +1,25 @@
 import React from "react";
 import "./Membership.css";
 import Navbar from "../../components/navbar/Navbar";
+import MembersImage from "/members-image.png";
+import Hero from "../../components/hero/Hero";
+import CurvyArrow from "/curvy-arrow.png";
 
 const Membership: React.FC = () => {
   return (
     <>
       <Navbar />
-      <h1>Membership</h1>
+      <Hero />
+      <section className="members-hero">
+        <img src={MembersImage} alt="Membership Character" className="memhero-character left"/>
+        <div className="members-hero-text right-slant">
+          <h1 className="mem-hero-title">MEMBERS</h1>
+          <div className="memhero-subtitle-wrapper">
+            <p className="memhero-subtitle"><i>Become a member of Girls Who<br></br>Code @ Hunter College to receive<br></br>exclusive community benefits!</i></p>
+          </div>
+          <img src={CurvyArrow} alt="Curvy Arrow" className="hero-arrow" />
+        </div>
+      </section>
     </>
   );
 };
