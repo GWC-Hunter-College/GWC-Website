@@ -2,6 +2,7 @@
 import React from "react";
 import Logo from "/logo.png";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   return (
@@ -10,13 +11,13 @@ const Navbar: React.FC = () => {
       <nav className="navbar">
         <ul>
           <li>✦</li>
-          <li><a href="/">home</a></li>
+          <li><Link to="/">home</Link></li>
           <li>✦</li>
-          <li><a href="/initiatives">initiatives</a></li>
+          <li><Link to="/initiatives">initiatives</Link></li>
           <li>✦</li>
-          <li><a href="/events">events</a></li>
+          <li><Link to="/events">events</Link></li>
           <li>✦</li>
-          <li><a href="/membership">membership</a></li>
+          <li><Link to="/membership">membership</Link></li>
           <li>✦</li>
         </ul>
       </nav>
