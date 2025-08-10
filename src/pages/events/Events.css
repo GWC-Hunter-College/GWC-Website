@@ -1,0 +1,69 @@
+.events-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('/events_image.png'); /* make sure this path is correct */
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+.purple-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(88, 41, 151, 0.85); /* deep purple tint */
+  z-index: -1;
+}
+
+.events-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5rem;
+  box-sizing: border-box;
+}
+
+.events-text-wrapper {
+  max-width: 700px;
+}
+
+.events-title {
+  font-size: 5rem;
+  font-weight: 900;
+  font-style: italic;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+}
+
+.events-subtitle {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.rsvp-button {
+  background-color: #d29eff; /* lavender pink */
+  color: black;
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  padding: 0.75rem 2rem;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.rsvp-button:hover {
+  background-color: #ffffff;
+}
