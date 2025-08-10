@@ -1,15 +1,13 @@
 import React from "react";
 import "./Initiatives.css";
-import Navbar from "../../components/navbar/Navbar";
+
+// Images
 import InitiativesImage from "/initiatives_image.png";
-import Hero from "../../components/hero/Hero";
 import CurvyArrow from "/curvy-arrow.png";
 
 const Initiatives: React.FC = () => {
   return (
     <>
-      <Navbar />
-      <Hero />
       <section className="initiatives-hero">
         <div className="hero-text-wrapper">
           <h1 className="in-hero-title">INITIATIVES</h1>

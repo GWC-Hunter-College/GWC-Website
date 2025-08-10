@@ -1,13 +1,9 @@
 import React from "react";
 import "./Home.css";
-import Navbar from "../../components/navbar/Navbar";
-import Hero from "../../components/hero/Hero";
 
 const Home: React.FC = () => {
   return (
     <>
-      <Navbar />
-      <Hero />
       <section className="home-hero">
         <div className="home-text-wrapper">
           <div className="hero-title-wrapper">

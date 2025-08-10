@@ -44,7 +44,6 @@
   font-weight: 500;
   margin-top: 0;
   margin-bottom: -0.5rem;
-  font-weight: 500;
   line-height: 1.4;
   font-family: 'Inter', sans-serif;
   text-align: left;
@@ -63,8 +62,8 @@
   bottom: 0;
   right: 0;
   max-height: 90vh;
-  max-width: 35vw;
-  max-width: min(40%, 500px);
+  /* max-width: 35vw;
+  max-width: min(40%, 500px); */
   object-fit: contain;
   z-index: 1;
   pointer-events: none;
