@@ -1,10 +1,15 @@
 import type { ButtonHTMLAttributes, PropsWithChildren } from "react";
+import styles from "./Button.module.css";
 
-type ButtonProps = PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>;
+type ButtonProps = PropsWithChildren<
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    variant?: "primary" | "light";
+  }
+>;
 
-const Button = ({ children, className, type = "button", ...props }: ButtonProps) => {
+const Button = ({ children, className = "", type = "button", variant = "primary", ...props }: ButtonProps) => {
   return (
-    <button className={className} type={type} {...props}>
+    <button className={`${styles.button} ${styles[variant]} ${className}`} type={type} {...props}>
       {children}
     </button>
   );

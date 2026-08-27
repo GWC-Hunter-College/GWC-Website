@@ -1,0 +1,40 @@
+.button {
+  min-width: 15rem;
+  min-height: 4.7rem;
+  padding: 0.75rem 2rem;
+  border: 0;
+  border-radius: 0.65rem;
+  color: var(--color-black);
+  font-size: clamp(1.25rem, 2.5vw, 2.15rem);
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.button:hover {
+  background: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.primary {
+  background: var(--color-accent);
+}
+
+.light {
+  background: var(--color-accent-light);
+}
+
+@media (max-width: 640px) {
+  .button {
+    min-width: 11rem;
+    min-height: 3.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}
