@@ -4,7 +4,7 @@
 }
 
 .hero {
-  min-height: min(100vh, 71.7rem);
+  min-height: 71.7rem;
 }
 
 .hero::after {
@@ -20,7 +20,7 @@
   z-index: 1;
   display: flex;
   width: min(100%, 1440px);
-  min-height: min(100vh, 71.7rem);
+  min-height: 71.7rem;
   margin: 0 auto;
   padding: clamp(11rem, 18vw, 16rem) var(--page-gutter) 5rem;
   flex-direction: column;

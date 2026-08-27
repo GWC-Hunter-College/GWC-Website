@@ -56,6 +56,7 @@ const TeamSection = () => {
             <img src={member.image} alt="" />
           </button>
         ))}
+        <div className={styles.memberPlaceholder} aria-hidden="true" />
       </div>
     </section>
   );
