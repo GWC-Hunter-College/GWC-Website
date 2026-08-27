@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../components/button/Button";
 import "./Home.css";
 
 const Home: React.FC = () => {
@@ -21,8 +22,8 @@ const Home: React.FC = () => {
           </div>
           <p className="hero-subtitle"><em>hunter college</em></p>
           <div className="hero-buttons">
-            <button className="hero-btn hero-btn-dark"><em>LOG IN</em></button>
-            <button className="hero-btn hero-btn-light"><em>JOIN US</em></button>
+            <Button className="hero-btn hero-btn-dark"><em>LOG IN</em></Button>
+            <Button className="hero-btn hero-btn-light"><em>JOIN US</em></Button>
           </div>
         </div>
       </section>

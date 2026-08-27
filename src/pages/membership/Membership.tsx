@@ -1,9 +1,9 @@
 import React from "react";
+import DecorativeArrow from "../../components/decorative-arrow/DecorativeArrow";
 import "./Membership.css";
 
 // Images
 import MembersImage from "/members-image.png";
-import CurvyArrow from "/curvy-arrow.png";
 
 const Membership: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const Membership: React.FC = () => {
         <div className="memhero-subtitle-wrapper">
           <p className="memhero-subtitle"><i>Become a member of Girls Who<br></br>Code @ Hunter College to receive<br></br>exclusive community benefits!</i></p>
         </div>
-        <img src={CurvyArrow} alt="Curvy Arrow" className="hero-arrow" />
+        <DecorativeArrow className="hero-arrow" />
       </div>
     </section>
   );
