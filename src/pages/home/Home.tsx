@@ -49,7 +49,7 @@ const Home = () => {
       </section>
 
       <section className={styles.collage} aria-label="Girls Who Code community photos">
-        <div className={styles.verticalLine} aria-hidden="true" />
+        <div className={styles.sectionDivider} aria-hidden="true" />
         <div className={styles.photoGroup}>
           <figure className={styles.photoLeft}>
             <img src={CollageLeft} alt="Students attending a Girls Who Code presentation" />
@@ -61,7 +61,7 @@ const Home = () => {
             <img src={CollageRight} alt="Girls Who Code members at a club event" />
           </figure>
         </div>
-        <div className={styles.verticalLine} aria-hidden="true" />
+        <div className={styles.sectionDivider} aria-hidden="true" />
       </section>
 
       <TeamSection />

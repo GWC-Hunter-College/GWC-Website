@@ -131,9 +131,10 @@
   align-items: center;
 }
 
-.verticalLine {
-  width: 0.4rem;
-  height: clamp(10rem, 25vw, 23rem);
+.sectionDivider {
+  width: clamp(10rem, 25vw, 23rem);
+  height: 0.4rem;
+  margin: clamp(0.75rem, 1.5vw, 1.5rem) 0;
   background: rgb(255 255 255 / 80%);
 }
 
@@ -278,8 +279,9 @@
     transform: rotate(12deg) translate(-15%, 12%);
   }
 
-  .verticalLine {
-    height: 8rem;
+  .sectionDivider {
+    width: 8rem;
+    margin: 0.75rem 0;
   }
 }
 
