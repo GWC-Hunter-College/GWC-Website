@@ -1,0 +1,99 @@
+.eventsPage {
+  min-height: 100%;
+  background: var(--color-page);
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  height: clamp(42rem, 62.64vw, 56.375rem);
+  overflow: hidden;
+  align-items: center;
+  color: var(--color-white);
+}
+
+.hero::before,
+.hero::after {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  content: "";
+}
+
+.hero::before {
+  background: url("/events_image.png") center / cover no-repeat;
+}
+
+.hero::after {
+  z-index: -1;
+  background: rgb(88 41 151 / 84%);
+}
+
+.content {
+  width: min(calc(100% - (2 * var(--page-gutter))), var(--content-width));
+  margin: 4.5rem auto 0;
+}
+
+.title,
+.schedule {
+  margin: 0;
+}
+
+.title {
+  font-size: clamp(3.25rem, 8.7vw, 7.8rem);
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.schedule {
+  margin-top: clamp(1rem, 2vw, 1.75rem);
+  font-size: clamp(2rem, 5.2vw, 4.7rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.rsvpButton {
+  margin-top: clamp(2rem, 3.25vw, 3rem);
+}
+
+.rsvpButton:disabled {
+  cursor: not-allowed;
+}
+
+.rsvpButton:disabled:hover {
+  background: var(--color-accent);
+  transform: none;
+}
+
+@media (max-width: 800px) {
+  .hero::before {
+    background-position: 56% center;
+  }
+
+  .content {
+    margin-top: 6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 42rem;
+  }
+
+  .hero::after {
+    background: rgb(72 27 137 / 84%);
+  }
+
+  .content {
+    margin-top: 5rem;
+  }
+
+  .schedule {
+    line-height: 1.05;
+  }
+}
