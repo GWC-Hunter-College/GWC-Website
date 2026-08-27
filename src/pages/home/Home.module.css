@@ -1,0 +1,315 @@
+.page {
+  background: var(--color-page);
+  color: var(--color-white);
+}
+
+.hero {
+  min-height: min(100vh, 71.7rem);
+}
+
+.hero::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(30 7 67 / 8%), rgb(59 24 119 / 18%));
+  content: "";
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(100%, 1440px);
+  min-height: min(100vh, 71.7rem);
+  margin: 0 auto;
+  padding: clamp(11rem, 18vw, 16rem) var(--page-gutter) 5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.heroTitle {
+  width: 100%;
+  margin: 0;
+  font-size: clamp(4rem, 13.9vw, 12.5rem);
+  font-style: italic;
+  line-height: 0.75;
+  text-transform: uppercase;
+}
+
+.titleTop {
+  display: block;
+  white-space: nowrap;
+}
+
+.titleTop strong {
+  font-weight: 900;
+}
+
+.titleTop span {
+  font-weight: 400;
+}
+
+.titleBottom {
+  display: flex;
+  width: calc(100% + (2 * var(--page-gutter)));
+  margin-left: calc(-1 * var(--page-gutter));
+  align-items: center;
+  gap: 1rem;
+  font-weight: 900;
+}
+
+.titleBottom::before,
+.titleBottom::after {
+  height: 0.3rem;
+  flex: 1;
+  background: currentColor;
+  content: "";
+}
+
+.heroSubtitle {
+  margin: 1.2rem 0 0;
+  font-size: clamp(2rem, 5.2vw, 4.7rem);
+  font-style: italic;
+}
+
+.heroButtons {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.loginMessage {
+  min-height: 1.5rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.about {
+  width: min(calc(100% - (2 * var(--page-gutter))), var(--content-width));
+  margin: -12rem auto 4rem;
+  padding: clamp(2.5rem, 6vw, 5rem);
+  border-radius: clamp(1.5rem, 4vw, 3.15rem);
+  background: var(--color-surface);
+}
+
+.about h2 {
+  margin: 0 0 1.25rem;
+  text-align: right;
+  font-size: clamp(3rem, 7vw, 5.9rem);
+  font-style: italic;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(14rem, 0.9fr) minmax(12rem, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.aboutGrid > p {
+  margin: 0;
+  font-size: clamp(1rem, 1.65vw, 1.55rem);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.collage {
+  display: flex;
+  width: min(100%, 92rem);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter) clamp(4rem, 9vw, 8rem);
+  flex-direction: column;
+  align-items: center;
+}
+
+.verticalLine {
+  width: 0.4rem;
+  height: clamp(10rem, 25vw, 23rem);
+  background: rgb(255 255 255 / 80%);
+}
+
+.photoGroup {
+  display: grid;
+  width: 100%;
+  min-height: clamp(27rem, 63vw, 57rem);
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.photoGroup figure {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: clamp(0.65rem, 1.7vw, 1.35rem);
+  background: #efefef;
+  box-shadow: 0 1rem 2rem rgb(13 3 40 / 20%);
+}
+
+.photoGroup img {
+  width: 100%;
+  height: clamp(23rem, 47vw, 43rem);
+  object-fit: cover;
+}
+
+.photoLeft {
+  transform: rotate(-21deg) translate(8%, 3%);
+}
+
+.photoCenter {
+  z-index: 2 !important;
+  transform: rotate(4deg) scale(0.92);
+}
+
+.photoRight {
+  transform: rotate(26deg) translate(-8%, 2%);
+}
+
+.faq {
+  width: min(calc(100% - (2 * var(--page-gutter))), var(--content-width));
+  margin: 0 auto;
+  padding: clamp(4rem, 10vw, 8rem) 0 2rem;
+}
+
+.faq h2 {
+  margin: 0 0 0.5rem;
+  text-align: right;
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  font-style: italic;
+  line-height: 1;
+}
+
+.faqList {
+  border-top: 0.25rem solid var(--color-white);
+}
+
+.faqItem {
+  border-bottom: 0.25rem solid var(--color-white);
+}
+
+.faqItem summary {
+  position: relative;
+  padding: 1.4rem 4rem 1.4rem 0;
+  font-size: clamp(1.05rem, 2.2vw, 1.75rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqItem summary::after {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  content: "→";
+  font-size: 2rem;
+  transform: translateY(-50%);
+}
+
+.faqItem[open] summary::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.faqItem p {
+  max-width: 55rem;
+  margin: 0;
+  padding: 0 4rem 1.5rem 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .heroContent {
+    min-height: 44rem;
+    padding-top: 9rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(3.25rem, 18vw, 6.5rem);
+    line-height: 0.84;
+  }
+
+  .titleTop {
+    white-space: normal;
+  }
+
+  .about {
+    margin-top: -2rem;
+  }
+
+  .about h2 {
+    text-align: center;
+  }
+
+  .aboutGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutGrid > p {
+    text-align: center;
+  }
+
+  .photoGroup {
+    min-height: 38rem;
+  }
+
+  .photoGroup img {
+    height: clamp(13rem, 54vw, 20rem);
+  }
+
+  .photoLeft {
+    transform: rotate(-12deg) translate(15%, 12%);
+  }
+
+  .photoCenter {
+    transform: rotate(3deg) scale(1.05);
+  }
+
+  .photoRight {
+    transform: rotate(12deg) translate(-15%, 12%);
+  }
+
+  .verticalLine {
+    height: 8rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .photoGroup {
+    min-height: auto;
+    padding: 3rem 0;
+    grid-template-columns: 1fr;
+  }
+
+  .photoGroup figure {
+    width: 74%;
+    margin: -1.25rem auto;
+  }
+
+  .photoGroup img {
+    height: 18rem;
+  }
+
+  .photoLeft {
+    justify-self: start;
+    transform: rotate(-8deg);
+  }
+
+  .photoCenter {
+    z-index: 2 !important;
+    justify-self: end;
+    transform: rotate(4deg);
+  }
+
+  .photoRight {
+    justify-self: start;
+    transform: rotate(-3deg);
+  }
+}
