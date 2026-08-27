@@ -89,9 +89,11 @@
 }
 
 .about {
+  position: relative;
+  z-index: 2;
   width: min(calc(100% - (2 * var(--page-gutter))), var(--content-width));
-  margin: -12rem auto 4rem;
-  padding: clamp(2.5rem, 6vw, 5rem);
+  margin: -8rem auto 4rem;
+  padding: clamp(3rem, 6.5vw, 6rem);
   border-radius: clamp(1.5rem, 4vw, 3.15rem);
   background: var(--color-surface);
 }
@@ -241,7 +243,7 @@
   }
 
   .about {
-    margin-top: -2rem;
+    margin-top: -1rem;
   }
 
   .about h2 {
