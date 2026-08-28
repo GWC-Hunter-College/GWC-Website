@@ -1,0 +1,261 @@
+.logo {
+  --draw-easing: cubic-bezier(0.45, 0, 0.25, 1);
+  --extend-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+  margin: 0;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+.accessibleName {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.visualLockup {
+  display: grid;
+  width: min(100%, 36rem);
+  margin-inline: auto;
+  justify-items: center;
+}
+
+.script {
+  position: relative;
+  z-index: 2;
+  width: 78%;
+  height: auto;
+  margin-bottom: clamp(-1.55rem, -2.6vw, -0.95rem);
+  overflow: visible;
+}
+
+.scriptStroke {
+  fill: none;
+  filter: drop-shadow(0 0.2rem 0 rgb(31 73 120 / 66%)) drop-shadow(0 0 0.55rem rgb(143 234 247 / 28%));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 7.5;
+}
+
+.dot {
+  fill: #9eeaf4;
+  filter: drop-shadow(0 0.2rem 0 rgb(31 73 120 / 66%)) drop-shadow(0 0 0.55rem rgb(143 234 247 / 28%));
+}
+
+.codeMark {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0.7rem 1.2rem rgb(20 5 58 / 24%));
+}
+
+.codeLetter {
+  fill: #f2e8ff;
+}
+
+.codeC {
+  fill: #d9c4ff;
+}
+
+.codeO {
+  fill: #a9edf5;
+}
+
+.codeD {
+  fill: #d3aeff;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+.codeE {
+  fill: #efc6ff;
+}
+
+.affiliation {
+  position: relative;
+  display: inline-flex;
+  min-height: 1.25em;
+  margin-top: clamp(0.25rem, 0.75vw, 0.55rem);
+  align-items: center;
+  color: #f2dcff;
+  font-family: "Arial Black", "Inter", Arial, sans-serif;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.07em;
+  line-height: 1;
+  text-shadow: 0 0.35rem 0.8rem rgb(20 5 58 / 24%);
+}
+
+.affiliationCharacter {
+  display: inline-block;
+}
+
+.cursor {
+  width: 0.08em;
+  height: 0.95em;
+  margin-left: 0.12em;
+  background: var(--color-accent-light);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animated .scriptStroke {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawStroke 0.4s var(--draw-easing) forwards;
+  }
+
+  .animated .gStroke {
+    animation-duration: 0.55s;
+  }
+
+  .animated .iStroke {
+    animation-delay: 0.42s;
+    animation-duration: 0.25s;
+  }
+
+  .animated .dot {
+    opacity: 0;
+    transform: scale(0);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: placeDot 0.14s ease-out 0.58s forwards;
+  }
+
+  .animated .rStroke {
+    animation-delay: 0.58s;
+    animation-duration: 0.32s;
+  }
+
+  .animated .lStroke {
+    animation-delay: 0.8s;
+    animation-duration: 0.44s;
+  }
+
+  .animated .sStroke {
+    animation-delay: 1.1s;
+    animation-duration: 0.34s;
+  }
+
+  .animated .wStroke {
+    animation-delay: 1.3s;
+    animation-duration: 0.42s;
+  }
+
+  .animated .hStroke {
+    animation-delay: 1.58s;
+    animation-duration: 0.52s;
+  }
+
+  .animated .oStroke {
+    animation-delay: 1.94s;
+    animation-duration: 0.38s;
+  }
+
+  .animated .flourishStroke {
+    animation-delay: 2.18s;
+    animation-duration: 0.17s;
+  }
+
+  .animated .codeD {
+    transform: translateY(18%) scale(0.9, 0.58);
+    animation: extendD 2.35s var(--extend-easing) forwards;
+  }
+
+  .animated .affiliationCharacter {
+    opacity: 0;
+    animation: revealCharacter 10ms linear var(--character-delay) forwards;
+  }
+
+  .animated .cursor {
+    animation:
+      showCursor 1ms step-end 2.35s forwards,
+      blinkCursor 0.48s step-end 2.35s 3,
+      hideCursor 1ms step-end 3.79s forwards;
+  }
+}
+
+@keyframes drawStroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes extendD {
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes revealCharacter {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes placeDot {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes showCursor {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes blinkCursor {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hideCursor {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .visualLockup {
+    width: min(100%, 31rem);
+  }
+
+  .script {
+    width: 82%;
+    margin-bottom: -0.75rem;
+  }
+
+  .scriptStroke {
+    stroke-width: 8.5;
+  }
+
+  .affiliation {
+    font-size: clamp(1.8rem, 9vw, 2.65rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .visualLockup {
+    width: min(100%, 24rem);
+  }
+
+  .script {
+    width: 86%;
+    margin-bottom: -0.5rem;
+  }
+}

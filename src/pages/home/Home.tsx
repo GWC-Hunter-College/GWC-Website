@@ -4,6 +4,7 @@ import CollageCenter from "../../assets/home/collage-center.jpg";
 import CollageLeft from "../../assets/home/collage-left.jpg";
 import CollageRight from "../../assets/home/collage-right.jpg";
 import Button from "../../components/button/Button";
+import AnimatedHeroLogo from "../../components/hero/AnimatedHeroLogo";
 import PageHero from "../../components/page-hero/PageHero";
 import FutureThreeDPlaceholder from "./FutureThreeDPlaceholder";
 import { frequentlyAskedQuestions } from "./homeData";
@@ -20,15 +21,9 @@ const Home = () => {
 
   return (
     <div className={styles.page}>
-      <PageHero className={styles.hero}>
+      <PageHero className={styles.hero} aria-labelledby="home-hero-title">
         <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
-            <span className={styles.titleTop}>
-              <strong>Girls</strong> <span>Who</span>
-            </span>
-            <span className={styles.titleBottom}>Code</span>
-          </h1>
-          <p className={styles.heroSubtitle}>hunter college</p>
+          <AnimatedHeroLogo />
           <div className={styles.heroButtons}>
             <Button aria-controls="about" onClick={scrollToAbout}>Learn more</Button>
             <Button variant="light" onClick={() => navigate("/membership")}>Join us</Button>
