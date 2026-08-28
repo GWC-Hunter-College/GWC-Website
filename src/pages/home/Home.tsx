@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CollageCenter from "../../assets/home/collage-center.jpg";
 import CollageLeft from "../../assets/home/collage-left.jpg";
@@ -12,7 +12,11 @@ import styles from "./Home.module.css";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [loginMessage, setLoginMessage] = useState("");
+  const aboutSectionRef = useRef<HTMLElement>(null);
+
+  const scrollToAbout = () => {
+    aboutSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div className={styles.page}>
@@ -26,14 +30,18 @@ const Home = () => {
           </h1>
           <p className={styles.heroSubtitle}>hunter college</p>
           <div className={styles.heroButtons}>
-            <Button onClick={() => setLoginMessage("Member login is coming soon.")}>Log in</Button>
+            <Button aria-controls="about" onClick={scrollToAbout}>Learn more</Button>
             <Button variant="light" onClick={() => navigate("/membership")}>Join us</Button>
           </div>
-          <p className={styles.loginMessage} role="status">{loginMessage}</p>
         </div>
       </PageHero>
 
-      <section className={styles.about} aria-labelledby="about-heading">
+      <section
+        className={styles.about}
+        id="about"
+        ref={aboutSectionRef}
+        aria-labelledby="about-heading"
+      >
         <h2 id="about-heading">Who are we?</h2>
         <div className={styles.aboutGrid}>
           <p>
