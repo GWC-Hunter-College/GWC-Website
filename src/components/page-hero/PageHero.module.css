@@ -1,0 +1,16 @@
+.hero {
+  position: relative;
+  min-height: 56.25rem;
+  overflow: hidden;
+  background-color: var(--color-page);
+  background-image: linear-gradient(rgb(20 5 58 / 34%), rgb(59 24 119 / 26%)), url("/bg.png");
+  background-position: center;
+  background-size: cover;
+  color: var(--color-white);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 44rem;
+  }
+}

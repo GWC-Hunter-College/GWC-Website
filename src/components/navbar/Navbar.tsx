@@ -1,24 +1,63 @@
 
-import React from "react";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import Sparkle from "../../assets/shared/sparkle.png";
 import Logo from "/logo.png";
-import "./Navbar.css";
-import { Link } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
-const Navbar: React.FC = () => {
+const navigation = [
+  { label: "home", to: "/" },
+  { label: "events", to: "/events" },
+  { label: "membership", to: "/membership" },
+  { label: "initiatives", to: "/initiatives" },
+];
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="navbar-wrapper">
-      <img src={Logo} alt="GWC Logo" />
-      <nav className="navbar">
-        <ul>
-          <li>✦</li>
-          <li><Link to="/">home</Link></li>
-          <li>✦</li>
-          <li><Link to="/initiatives">initiatives</Link></li>
-          <li>✦</li>
-          <li><Link to="/events">events</Link></li>
-          <li>✦</li>
-          <li><Link to="/membership">membership</Link></li>
-          <li>✦</li>
+    <div className={styles.navbar}>
+      <Link className={styles.logoLink} to="/" aria-label="Girls Who Code at Hunter College home">
+        <img className={styles.logo} src={Logo} alt="" />
+      </Link>
+
+      <button
+        className={styles.menuButton}
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls="site-navigation"
+        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+        onClick={() => setIsOpen((open) => !open)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <nav
+        id="site-navigation"
+        className={`${styles.navigation} ${isOpen ? styles.navigationOpen : ""}`}
+        aria-label="Primary navigation"
+      >
+        <ul className={styles.navigationList}>
+          {navigation.map((item) => (
+            <li className={styles.navigationItem} key={item.to}>
+              <img className={styles.sparkle} src={Sparkle} alt="" aria-hidden="true" />
+              <NavLink
+                className={({ isActive }) =>
+                  `${styles.navigationLink} ${isActive ? styles.navigationLinkActive : ""}`
+                }
+                to={item.to}
+                end={item.to === "/"}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
+          <li className={styles.finalSparkle} aria-hidden="true">
+            <img className={styles.sparkle} src={Sparkle} alt="" />
+          </li>
         </ul>
       </nav>
     </div>

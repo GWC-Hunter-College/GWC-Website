@@ -1,6 +1,78 @@
-body {
-  background-color: #3B1877;
-  font-family: "Didact Gothic", sans-serif;
-  color: white;
+:root {
+  font-family: "Inter", Arial, sans-serif;
+  color: #ffffff;
+  background: #3b1877;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --color-page: #3b1877;
+  --color-page-deep: #32106b;
+  --color-surface: #1b0e39;
+  --color-accent: #c494ff;
+  --color-accent-light: #f3dbff;
+  --color-chip: #dcc8fd;
+  --color-white: #ffffff;
+  --color-black: #09050f;
+  --page-gutter: clamp(1.25rem, 4vw, 4.25rem);
+  --content-width: 1304px;
+  --focus-ring: #ffda62;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--color-page);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--color-page);
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+::selection {
+  color: var(--color-black);
+  background: var(--color-accent-light);
+}
