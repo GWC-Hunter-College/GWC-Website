@@ -230,6 +230,12 @@
   line-height: 1.6;
 }
 
+@media (min-width: 901px) {
+  .hero {
+    min-height: clamp(42rem, 87svh, 52rem);
+  }
+}
+
 @media (max-width: 760px) {
   .hero {
     min-height: 40rem;

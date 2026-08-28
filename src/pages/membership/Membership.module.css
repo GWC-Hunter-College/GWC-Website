@@ -262,6 +262,116 @@
   border: 0;
 }
 
+@media (min-width: 901px) {
+  .hero {
+    min-height: clamp(22rem, 38svh, 24rem);
+  }
+
+  .heroInner {
+    width: min(100%, 70rem);
+  }
+
+  .heroCharacter {
+    bottom: -0.25rem;
+    left: clamp(0rem, 3vw, 2rem);
+    width: clamp(16rem, 20vw, 20rem);
+  }
+
+  .heroCopy {
+    top: clamp(8.25rem, 15vh, 9.5rem);
+    right: clamp(1.5rem, 4vw, 3rem);
+    width: min(42rem, 62vw);
+  }
+
+  .heroTitle {
+    font-size: clamp(5rem, 8vw, 7rem);
+  }
+
+  .heroSubtitle {
+    max-width: 34rem;
+    margin-top: 0.65rem;
+    font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  }
+
+  .heroArrow {
+    width: 8rem;
+    margin: -3.2rem 6rem 0 auto;
+  }
+
+  .formSection {
+    padding: 1.5rem var(--page-gutter) 2rem;
+  }
+
+  .formContainer {
+    width: min(100%, 56rem);
+  }
+
+  .form {
+    gap: 0.875rem;
+  }
+
+  .fieldGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 1rem;
+    row-gap: 0.85rem;
+  }
+
+  .fieldGrid > .field:nth-child(-n + 2) {
+    grid-column: span 2;
+  }
+
+  .fieldFull {
+    grid-column: span 3;
+  }
+
+  .field {
+    gap: 0.375rem;
+    font-size: 1.15rem;
+  }
+
+  .field input,
+  .field select {
+    min-height: 3rem;
+    padding: 0.55rem 0.85rem;
+  }
+
+  .field textarea {
+    height: 5.5rem;
+    min-height: 5.5rem;
+    padding: 0.75rem;
+  }
+
+  .interests legend {
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+  }
+
+  .interestOptions {
+    gap: 0.6rem;
+  }
+
+  .interestOption span {
+    min-width: 8rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .submitArea {
+    min-height: 4rem;
+  }
+
+  .submitButton {
+    min-width: 11rem;
+    min-height: 3.25rem;
+    font-size: 1.25rem;
+  }
+
+  .confirmation {
+    margin-top: 0.5rem;
+  }
+}
+
 @media (max-width: 900px) {
   .hero {
     min-height: 54rem;
