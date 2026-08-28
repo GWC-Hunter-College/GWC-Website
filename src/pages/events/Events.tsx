@@ -1,3 +1,4 @@
+/*
 import Button from "../../components/button/Button";
 import { featuredEvent } from "./eventsData";
 import styles from "./Events.module.css";
@@ -34,6 +35,26 @@ const Events = () => {
           </Button>
         </div>
       </section>
+    </div>
+  );
+};
+
+export default Events;
+*/
+
+import PageHero from "../../components/page-hero/PageHero";
+import styles from "./Events.module.css";
+
+const Events = () => {
+  return (
+    <div className={styles.workInProgressPage}>
+      <PageHero className={styles.workInProgressHero} aria-labelledby="events-title">
+        <div className={styles.workInProgressContent}>
+          <p className={styles.workInProgressLabel}>Events</p>
+          <h1 id="events-title">Work in progress</h1>
+          <p>We’re building this page now. Check back soon to see what’s coming up!</p>
+        </div>
+      </PageHero>
     </div>
   );
 };

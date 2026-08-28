@@ -7,9 +7,9 @@ import styles from "./Navbar.module.css";
 
 const navigation = [
   { label: "home", to: "/" },
-  { label: "initiatives", to: "/initiatives" },
   { label: "events", to: "/events" },
   { label: "membership", to: "/membership" },
+  { label: "initiatives", to: "/initiatives" },
 ];
 
 const Navbar = () => {

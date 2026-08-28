@@ -1,3 +1,53 @@
+.workInProgressPage {
+  background: var(--color-page);
+  color: var(--color-white);
+}
+
+.workInProgressHero.workInProgressHero {
+  display: grid;
+  min-height: clamp(42rem, 100svh, 58rem);
+  padding: clamp(9rem, 18vh, 12rem) var(--page-gutter) clamp(4rem, 9vh, 6rem);
+  place-items: center;
+}
+
+.workInProgressContent {
+  width: min(100%, 58rem);
+  padding: clamp(2.5rem, 6vw, 5rem);
+  border-radius: clamp(1.5rem, 4vw, 3rem);
+  background: rgb(27 14 57 / 88%);
+  text-align: center;
+  box-shadow: 0 1.5rem 4rem rgb(13 3 40 / 22%);
+}
+
+.workInProgressLabel {
+  margin: 0 0 0.75rem;
+  color: var(--color-accent-light);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.workInProgressContent h1 {
+  margin: 0;
+  font-size: clamp(3.25rem, 8vw, 6.5rem);
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.workInProgressContent > p:last-child {
+  max-width: 42rem;
+  margin: 1.5rem auto 0;
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
 .eventsPage {
   min-height: 100%;
   background: var(--color-page);

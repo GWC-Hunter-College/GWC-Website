@@ -1,3 +1,4 @@
+/*
 import DecorativeArrow from "../../components/decorative-arrow/DecorativeArrow";
 import PageHero from "../../components/page-hero/PageHero";
 import InitiativesImage from "/initiatives_image.png";
@@ -48,6 +49,26 @@ const Initiatives = () => {
           </ul>
         </div>
       </section>
+    </div>
+  );
+};
+
+export default Initiatives;
+*/
+
+import PageHero from "../../components/page-hero/PageHero";
+import styles from "./Initiatives.module.css";
+
+const Initiatives = () => {
+  return (
+    <div className={styles.workInProgressPage}>
+      <PageHero className={styles.workInProgressHero} aria-labelledby="initiatives-title">
+        <div className={styles.workInProgressContent}>
+          <p className={styles.workInProgressLabel}>Initiatives</p>
+          <h1 id="initiatives-title">Work in progress</h1>
+          <p>We’re building this page now. Check back soon to see what we’re working on!</p>
+        </div>
+      </PageHero>
     </div>
   );
 };
