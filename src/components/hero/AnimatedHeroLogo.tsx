@@ -2,8 +2,8 @@ import { useId, type CSSProperties } from "react";
 import styles from "./AnimatedHeroLogo.module.css";
 
 const affiliationText = "@HUNTER";
-const affiliationStart = 2350;
-const affiliationStep = 48;
+const affiliationStart = 2420;
+const affiliationStep = 65;
 
 type CharacterStyle = CSSProperties & {
   "--character-delay": string;
@@ -18,7 +18,9 @@ const getCharacterStyle = (delay: number): CharacterStyle => ({
  * one component lets the same lockup be resized for other placements later.
  */
 export const GwcHunterMark = () => {
-  const gradientId = useId().replace(/:/g, "");
+  const idRoot = useId().replace(/:/g, "");
+  const scriptGradientId = `${idRoot}-script`;
+  const codeGradientId = `${idRoot}-code`;
 
   return (
     <span className={styles.visualLockup} aria-hidden="true">
@@ -29,14 +31,14 @@ export const GwcHunterMark = () => {
         aria-hidden="true"
       >
         <defs>
-          <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
+          <linearGradient id={scriptGradientId} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#bdf8ff" />
-            <stop offset="0.55" stopColor="#8feaf7" />
-            <stop offset="1" stopColor="#76d5eb" />
+            <stop offset="0.55" stopColor="#83eaf5" />
+            <stop offset="1" stopColor="#5dd1e7" />
           </linearGradient>
         </defs>
 
-        <g style={{ stroke: `url(#${gradientId})` }}>
+        <g style={{ stroke: `url(#${scriptGradientId})` }}>
           <path
             className={`${styles.scriptStroke} ${styles.gStroke}`}
             pathLength="100"
@@ -91,34 +93,50 @@ export const GwcHunterMark = () => {
 
       <svg
         className={styles.codeMark}
-        viewBox="0 0 590 164"
+        viewBox="0 0 720 290"
         focusable="false"
         aria-hidden="true"
       >
-        <path
-          className={`${styles.codeLetter} ${styles.codeC}`}
-          d="M 18 24 H 145 V 55 H 57 V 124 H 145 V 155 H 18 Z"
-        />
-        <path
-          className={`${styles.codeLetter} ${styles.codeO}`}
-          fillRule="evenodd"
-          d="M 158 24 H 286 V 155 H 158 Z M 197 55 V 124 H 247 V 55 Z"
-        />
-        <path
-          className={`${styles.codeLetter} ${styles.codeD}`}
-          fillRule="evenodd"
-          d="M 301 0 H 350 C 406 0 437 27 437 78 C 437 129 406 155 350 155 H 301 Z M 340 31 V 124 H 350 C 381 124 398 110 398 78 C 398 45 381 31 350 31 Z"
-        />
-        <path
-          className={`${styles.codeLetter} ${styles.codeE}`}
-          d="M 450 24 H 577 V 55 H 489 V 74 H 558 V 104 H 489 V 124 H 577 V 155 H 450 Z"
-        />
+        <defs>
+          <linearGradient
+            id={codeGradientId}
+            x1="60"
+            y1="18"
+            x2="675"
+            y2="274"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0" stopColor="#e9c8fe" />
+            <stop offset="0.5" stopColor="#d0acf8" />
+            <stop offset="1" stopColor="#b693ea" />
+          </linearGradient>
+        </defs>
+
+        <g className={styles.codeGeometry} style={{ stroke: `url(#${codeGradientId})` }}>
+          <path className={styles.codeLetter} data-code-letter="c" d="M 183 128 H 60 V 274 H 183" />
+          <rect className={styles.codeLetter} data-code-letter="o" x="210" y="128" width="128" height="146" />
+          <path
+            className={styles.codeLetter}
+            data-code-letter="d-base"
+            d="M 493 128 V 274 H 365 V 128 H 493"
+          />
+          <path
+            className={`${styles.codeLetter} ${styles.codeDAscender}`}
+            pathLength="100"
+            d="M 493 128 V 18"
+          />
+          <path
+            className={styles.codeLetter}
+            data-code-letter="e"
+            d="M 675 128 H 528 V 274 H 675 M 528 201 H 648"
+          />
+        </g>
       </svg>
 
       <span className={styles.affiliation}>
         {Array.from(affiliationText).map((character, index) => (
           <span
-            className={styles.affiliationCharacter}
+            className={`${styles.affiliationCharacter} ${index === 0 ? styles.atCharacter : ""}`}
             style={getCharacterStyle(affiliationStart + index * affiliationStep)}
             key={`${character}-${index}`}
           >
