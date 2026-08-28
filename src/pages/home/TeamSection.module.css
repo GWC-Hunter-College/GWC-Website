@@ -23,10 +23,10 @@
   gap: clamp(2rem, 4vw, 3.5rem);
 }
 
-.character {
-  width: 100%;
-  max-height: 22rem;
-  object-fit: contain;
+.selectedPhoto {
+  width: min(100%, 21rem);
+  justify-self: center;
+  transform: rotate(-3deg);
 }
 
 .memberCard {
@@ -111,13 +111,16 @@
 }
 
 .memberButton {
-  overflow: hidden;
+  position: relative;
+  z-index: 1;
   aspect-ratio: 1;
   padding: 0;
   border: 3px solid transparent;
   border-radius: 1.4rem;
   background: #d9d9d9;
+  box-shadow: 0 0.35rem 0.75rem rgb(9 5 15 / 14%);
   cursor: pointer;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .memberPlaceholder {
@@ -129,11 +132,54 @@
 .memberButton img {
   width: 100%;
   height: 100%;
+  border-radius: calc(1.4rem - 3px);
   object-fit: cover;
 }
 
 .memberButtonActive {
+  z-index: 2;
   border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px rgb(255 218 98 / 32%), 0 0.65rem 1.15rem rgb(9 5 15 / 26%);
+  transform: scale(1.055);
+}
+
+.memberName {
+  position: absolute;
+  bottom: 0.35rem;
+  left: 50%;
+  width: max-content;
+  max-width: 8rem;
+  padding: 0.35rem 0.55rem;
+  border: 2px solid var(--focus-ring);
+  border-radius: 0.4rem;
+  opacity: 0;
+  background: var(--color-white);
+  color: var(--color-black);
+  box-shadow: 0 0.45rem 0.8rem rgb(9 5 15 / 24%);
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1.15;
+  pointer-events: none;
+  text-align: center;
+  transform: translate(-50%, 0.3rem);
+  transition: opacity 160ms ease, transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.memberButton:hover,
+.memberButton:focus-visible {
+  z-index: 3;
+}
+
+.memberButton:hover:not(.memberButtonActive) {
+  border-color: var(--color-accent-light);
+  box-shadow: 0 0.55rem 1rem rgb(9 5 15 / 22%);
+  transform: translateY(-0.15rem);
+}
+
+.memberButton:hover .memberName,
+.memberButton:focus-visible .memberName {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 @media (max-width: 760px) {
@@ -146,8 +192,8 @@
     gap: 1.5rem;
   }
 
-  .character {
-    max-height: 19rem;
+  .selectedPhoto {
+    width: min(78vw, 19rem);
   }
 
   .memberGrid {
@@ -158,7 +204,18 @@
     border-radius: 0.8rem;
   }
 
+  .memberButton img {
+    border-radius: calc(0.8rem - 3px);
+  }
+
   .memberPlaceholder {
     border-radius: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memberButton,
+  .memberName {
+    transition: none;
   }
 }

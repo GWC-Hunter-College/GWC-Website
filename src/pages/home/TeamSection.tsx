@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DiscordDark from "../../assets/home/discord-dark.png";
 import LinkedInDark from "../../assets/home/linkedin-dark.png";
-import TeamCharacter from "../../assets/home/team-character.png";
+import PolaroidFrame from "../../components/polaroid-frame/PolaroidFrame";
 import { teamMembers } from "./teamMembers";
 import styles from "./TeamSection.module.css";
 
@@ -14,7 +14,11 @@ const TeamSection = () => {
       <h2 id="team-heading">Meet the team</h2>
 
       <div className={styles.featuredArea}>
-        <img className={styles.character} src={TeamCharacter} alt="Club team mascot" />
+        <PolaroidFrame
+          className={styles.selectedPhoto}
+          src={selectedMember.image}
+          alt={`Portrait of ${selectedMember.name}`}
+        />
         <article className={styles.memberCard} aria-live="polite">
           <div className={styles.cardBar} aria-hidden="true">
             <span />
@@ -54,6 +58,7 @@ const TeamSection = () => {
             onClick={() => setSelectedIndex(index)}
           >
             <img src={member.image} alt="" />
+            <span className={styles.memberName}>{member.name}</span>
           </button>
         ))}
         <div className={styles.memberPlaceholder} aria-hidden="true" />
