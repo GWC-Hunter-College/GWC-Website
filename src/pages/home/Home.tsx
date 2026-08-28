@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CollageCenter from "../../assets/home/collage-center.jpg";
 import CollageLeft from "../../assets/home/collage-left.jpg";
@@ -7,6 +7,7 @@ import Button from "../../components/button/Button";
 import AnimatedHeroLogo from "../../components/hero/AnimatedHeroLogo";
 import PageHero from "../../components/page-hero/PageHero";
 import useInViewOnce from "../../hooks/useInViewOnce";
+import FaqItem from "./FaqItem";
 import FutureThreeDPlaceholder from "./FutureThreeDPlaceholder";
 import { frequentlyAskedQuestions } from "./homeData";
 import TeamSection from "./TeamSection";
@@ -15,6 +16,7 @@ import styles from "./Home.module.css";
 const Home = () => {
   const navigate = useNavigate();
   const aboutSectionRef = useRef<HTMLElement>(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const { elementRef: collageSectionRef, hasEntered: collageHasEntered } =
     useInViewOnce<HTMLElement>({ rootMargin: "0px 0px -8% 0px", threshold: 0.3 });
 
@@ -80,11 +82,14 @@ const Home = () => {
       <section className={styles.faq} aria-labelledby="faq-heading">
         <h2 id="faq-heading">FAQ</h2>
         <div className={styles.faqList}>
-          {frequentlyAskedQuestions.map((item) => (
-            <details className={styles.faqItem} key={item.question}>
-              <summary>{item.question}</summary>
-              <p>{item.answer}</p>
-            </details>
+          {frequentlyAskedQuestions.map((item, index) => (
+            <FaqItem
+              key={item.question}
+              question={item.question}
+              answer={item.answer}
+              isOpen={openFaqIndex === index}
+              onOpenChange={(isOpen) => setOpenFaqIndex(isOpen ? index : null)}
+            />
           ))}
         </div>
       </section>
