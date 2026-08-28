@@ -6,6 +6,7 @@ import CollageRight from "../../assets/home/collage-right.jpg";
 import Button from "../../components/button/Button";
 import AnimatedHeroLogo from "../../components/hero/AnimatedHeroLogo";
 import PageHero from "../../components/page-hero/PageHero";
+import useInViewOnce from "../../hooks/useInViewOnce";
 import FutureThreeDPlaceholder from "./FutureThreeDPlaceholder";
 import { frequentlyAskedQuestions } from "./homeData";
 import TeamSection from "./TeamSection";
@@ -14,6 +15,8 @@ import styles from "./Home.module.css";
 const Home = () => {
   const navigate = useNavigate();
   const aboutSectionRef = useRef<HTMLElement>(null);
+  const { elementRef: collageSectionRef, hasEntered: collageHasEntered } =
+    useInViewOnce<HTMLElement>({ rootMargin: "0px 0px -8% 0px", threshold: 0.3 });
 
   const scrollToAbout = () => {
     aboutSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -51,7 +54,12 @@ const Home = () => {
         </div>
       </section>
 
-      <section className={styles.collage} aria-label="Girls Who Code community photos">
+      <section
+        className={styles.collage}
+        ref={collageSectionRef}
+        data-in-view={collageHasEntered}
+        aria-label="Girls Who Code community photos"
+      >
         <div className={styles.sectionDivider} aria-hidden="true" />
         <div className={styles.photoGroup}>
           <figure className={styles.photoLeft}>

@@ -104,12 +104,16 @@
 }
 
 .photoGroup figure {
+  --photo-transition-delay: 0ms;
+
   position: relative;
   z-index: 1;
   margin: 0;
   padding: clamp(0.65rem, 1.4vw, 1.1rem);
   background: #efefef;
   box-shadow: 0 1rem 2rem rgb(13 3 40 / 20%);
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--photo-transition-delay);
+  will-change: transform;
 }
 
 .photoGroup img {
@@ -119,16 +123,37 @@
 }
 
 .photoLeft {
+  --photo-transition-delay: 0ms;
+
   transform: rotate(-21deg) translate(8%, 3%);
 }
 
 .photoCenter {
+  --photo-transition-delay: 55ms;
+
   z-index: 2 !important;
   transform: rotate(4deg) scale(0.92);
 }
 
 .photoRight {
+  --photo-transition-delay: 110ms;
+
   transform: rotate(26deg) translate(-8%, 2%);
+}
+
+.collage[data-in-view="false"] .photoLeft {
+  z-index: 1;
+  transform: translate(98%, 2%) rotate(-8deg) scale(0.88);
+}
+
+.collage[data-in-view="false"] .photoCenter {
+  z-index: 3 !important;
+  transform: rotate(2deg) scale(0.91);
+}
+
+.collage[data-in-view="false"] .photoRight {
+  z-index: 2;
+  transform: translate(-98%, -1%) rotate(7deg) scale(0.89);
 }
 
 .faq {
@@ -273,5 +298,23 @@
   .photoRight {
     justify-self: start;
     transform: rotate(-3deg);
+  }
+
+  .collage[data-in-view="false"] .photoLeft {
+    transform: translate(18%, 82%) rotate(-7deg) scale(0.9);
+  }
+
+  .collage[data-in-view="false"] .photoCenter {
+    transform: translateX(-18%) rotate(2deg) scale(0.92);
+  }
+
+  .collage[data-in-view="false"] .photoRight {
+    transform: translate(18%, -82%) rotate(7deg) scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photoGroup figure {
+    transition: none;
   }
 }
