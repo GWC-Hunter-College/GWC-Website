@@ -2,7 +2,7 @@
 
 The Girls Who Code at Hunter College website is a responsive React single-page application for introducing the club, presenting its community, and collecting prospective member interest.
 
-This repository contains the frontend MVP. Home and Membership are fully presented, while Events and Initiatives intentionally display Work in Progress pages. Their complete pre-MVP designs remain preserved in the source and in the documentation screenshots.
+This repository contains the frontend application. Home and Membership are fully presented, while Events and Initiatives intentionally display Work in Progress pages. Their complete designs remain preserved in their page source files for future use.
 
 ## Technology
 
@@ -38,7 +38,7 @@ The build command type-checks the project and writes the production bundle to `d
 
 ## Routes
 
-| Route | Page | MVP status |
+| Route | Page | Status |
 | --- | --- | --- |
 | `/` | Home | Available |
 | `/membership` | Membership | Available; the form is frontend-only |
@@ -53,7 +53,7 @@ The build command type-checks the project and writes the production bundle to `d
 - [CI/CD workflows](docs/CI_CD.md)
 - [Contributors and credits](docs/CONTRIBUTORS.md)
 
-## MVP preview
+## Preview
 
 [![Girls Who Code at Hunter College home page](docs/screenshots/home.png)](docs/PAGES.md#home)
 
@@ -66,4 +66,6 @@ The build command type-checks the project and writes the production bundle to `d
 
 ## License
 
-No open-source license is currently declared in this repository. All site content and assets should be treated as project-owned unless separately attributed.
+The original source code in this repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for full details.
+
+Third-party names, trademarks, logos, branding, images, and other assets — including Girls Who Code and Hunter College intellectual property — remain the property of their respective owners and may be subject to separate usage restrictions.
