@@ -2,7 +2,7 @@
 
 ## Overview
 
-The site is a frontend-only React 19 single-page application. Vite loads `src/main.tsx`, React renders `App`, and React Router selects the route-level page. Every route is nested beneath `SiteLayout`, so the same header and footer surround the active page.
+The site is a frontend-only React 19 single-page application. Vite loads `src/main.tsx`, React renders `App`, and React Router selects the route-level page. Every route is nested beneath `SiteLayout`:
 
 ```text
 index.html
@@ -20,7 +20,7 @@ index.html
             └── Footer
 ```
 
-There is no application server, API layer, database, authentication system, or global state library in the MVP.
+There is no application server, API layer, database, authentication system, or global state library.
 
 ## Repository layout
 
@@ -58,11 +58,11 @@ The route tree is owned by `src/App.tsx`.
 | --- | --- | --- |
 | `/` | `Home` | Hero, club introduction, community collage, interactive team directory, and FAQ |
 | `/membership` | `Membership` | Membership hero and frontend-only interest form |
-| `/events` | `Events` | MVP placeholder; the prior event hero is retained in comments |
-| `/initiatives` | `Initiatives` | MVP placeholder; the prior initiative directory is retained in comments |
+| `/events` | `Events` | Work in Progress placeholder; the prior event hero is retained in comments |
+| `/initiatives` | `Initiatives` | Work in Progress placeholder; the prior initiative directory is retained in comments |
 | `*` | `NotFound` | Friendly fallback for every unmatched route |
 
-Because the application uses `BrowserRouter`, the hosting layer must return `index.html` for client-side routes that do not correspond to physical files. That S3/CloudFront fallback behavior is infrastructure configuration and is not defined in this repository.
+Because the application uses `BrowserRouter`, the hosting layer must return `index.html` for client-side routes that do not correspond to physical files. That S3/CloudFront fallback behavior is implemented outside this repository.
 
 ## Shared components
 
@@ -82,21 +82,21 @@ The shared components focus on repeated UI and semantic structure. Route-specifi
 
 ### Home
 
-`Home.tsx` composes the hero, Who Are We panel, community collage, team section, and FAQ. It uses a React ref to smoothly scroll from Learn More to the introduction and React Router's `useNavigate` to send Join Us to Membership.
+`Home.tsx` composes the hero, Who Are We panel, community collage, team section, and FAQ. It uses a React ref to smoothly scroll from Learn More to the introduction and React Router's `useNavigate` hook for the Join Us action.
 
-`TeamSection.tsx` owns local selection state for the team directory. The member records live in `teamMembers.ts`, while FAQ content lives in `homeData.ts`. `FutureThreeDPlaceholder.tsx` reserves the future interactive-art slot without introducing a 3D dependency during MVP.
+`TeamSection.tsx` owns local selection state for the team directory. The member records live in `teamMembers.ts`, while FAQ content lives in `homeData.ts`. `FutureThreeDPlaceholder.tsx` reserves the three-dimensional section for a later implementation.
 
 ### Membership
 
-`Membership.tsx` renders a semantic HTML form with labeled required fields, a year selector, interest checkboxes, and comments. Submission is intercepted in the browser and produces an accessible status message. No data leaves the page.
+`Membership.tsx` renders a semantic HTML form with labeled required fields, a year selector, interest checkboxes, and comments. Submission is intercepted in the browser and produces an accessible toast-style confirmation message.
 
 ### Events
 
-The active component renders a Work in Progress message. The previous event hero, RSVP behavior, and `eventsData.ts` integration remain commented in `Events.tsx` so the design can be restored after its content and destination are ready.
+The active component renders a Work in Progress message. The previous event hero, RSVP behavior, and `eventsData.ts` integration remain commented in `Events.tsx` so the design can be restored after real event data becomes available.
 
 ### Initiatives
 
-The active component renders a Work in Progress message. The previous directory implementation remains commented in `Initiatives.tsx`; its reusable `InitiativeCard` and typed data in `initiativesData.ts` remain available.
+The active component renders a Work in Progress message. The previous directory implementation remains commented in `Initiatives.tsx`; its reusable `InitiativeCard` and typed data in `initiativesData.ts` are ready for future use.
 
 ### Not Found
 
@@ -112,7 +112,7 @@ The active component renders a Work in Progress message. The previous directory 
 
 ## State and data
 
-The MVP uses only local React state:
+The application uses only local React state:
 
 - mobile navigation open/closed state in `Navbar`;
 - selected team member state in `TeamSection`;
