@@ -112,7 +112,7 @@
   padding: clamp(0.65rem, 1.4vw, 1.1rem);
   background: #efefef;
   box-shadow: 0 1rem 2rem rgb(13 3 40 / 20%);
-  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--photo-transition-delay);
+  transition: transform 900ms cubic-bezier(0.45, 0, 0.2, 1) var(--photo-transition-delay);
   will-change: transform;
 }
 

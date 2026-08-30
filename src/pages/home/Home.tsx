@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CollageCenter from "../../assets/home/collage-center.jpg";
 import CollageLeft from "../../assets/home/collage-left.jpg";
@@ -6,7 +6,8 @@ import CollageRight from "../../assets/home/collage-right.jpg";
 import Button from "../../components/button/Button";
 import HeroBrand, { type HeroBrandMode } from "../../components/hero/HeroBrand";
 import PageHero from "../../components/page-hero/PageHero";
-import useInViewOnce from "../../hooks/useInViewOnce";
+import useInViewPair from "../../hooks/useInViewPair";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import FaqItem from "./FaqItem";
 import FutureThreeDPlaceholder from "./FutureThreeDPlaceholder";
 import { frequentlyAskedQuestions } from "./homeData";
@@ -14,13 +15,36 @@ import TeamSection from "./TeamSection";
 import styles from "./Home.module.css";
 
 const HERO_BRAND_MODE: HeroBrandMode = "auto";
+const POLAROID_OPEN_DELAY_MS = 50;
+const POLAROID_CLOSE_DELAY_MS = 250;
 
 const Home = () => {
   const navigate = useNavigate();
   const aboutSectionRef = useRef<HTMLElement>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  const { elementRef: collageSectionRef, hasEntered: collageHasEntered } =
-    useInViewOnce<HTMLElement>({ rootMargin: "0px 0px -8% 0px", threshold: 0.3 });
+  const [polaroidsOpen, setPolaroidsOpen] = useState(false);
+  const [polaroidHovered, setPolaroidHovered] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const {
+    firstRef: topBarRef,
+    secondRef: bottomBarRef,
+    firstVisible: topBarVisible,
+    secondVisible: bottomBarVisible,
+  } = useInViewPair<HTMLDivElement>();
+  const polaroidSectionFullyVisible = topBarVisible && bottomBarVisible;
+  const shouldOpenPolaroids = polaroidSectionFullyVisible || polaroidHovered;
+
+  useEffect(() => {
+    if (prefersReducedMotion || polaroidsOpen === shouldOpenPolaroids) {
+      return;
+    }
+
+    const transitionTimeout = window.setTimeout(() => {
+      setPolaroidsOpen(shouldOpenPolaroids);
+    }, shouldOpenPolaroids ? POLAROID_OPEN_DELAY_MS : POLAROID_CLOSE_DELAY_MS);
+
+    return () => window.clearTimeout(transitionTimeout);
+  }, [polaroidsOpen, prefersReducedMotion, shouldOpenPolaroids]);
 
   const scrollToAbout = () => {
     aboutSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -60,23 +84,31 @@ const Home = () => {
 
       <section
         className={styles.collage}
-        ref={collageSectionRef}
-        data-in-view={collageHasEntered}
+        data-in-view={prefersReducedMotion || polaroidsOpen}
         aria-label="Girls Who Code community photos"
       >
-        <div className={styles.sectionDivider} aria-hidden="true" />
-        <div className={styles.photoGroup}>
-          <figure className={styles.photoLeft}>
+        <div className={styles.sectionDivider} ref={topBarRef} aria-hidden="true" />
+        <div className={styles.photoGroup} onMouseLeave={() => setPolaroidHovered(false)}>
+          <figure
+            className={styles.photoLeft}
+            onMouseEnter={() => setPolaroidHovered(true)}
+          >
             <img src={CollageLeft} alt="Students attending a Girls Who Code presentation" />
           </figure>
-          <figure className={styles.photoCenter}>
+          <figure
+            className={styles.photoCenter}
+            onMouseEnter={() => setPolaroidHovered(true)}
+          >
             <img src={CollageCenter} alt="Girls Who Code members gathering together" />
           </figure>
-          <figure className={styles.photoRight}>
+          <figure
+            className={styles.photoRight}
+            onMouseEnter={() => setPolaroidHovered(true)}
+          >
             <img src={CollageRight} alt="Girls Who Code members at a club event" />
           </figure>
         </div>
-        <div className={styles.sectionDivider} aria-hidden="true" />
+        <div className={styles.sectionDivider} ref={bottomBarRef} aria-hidden="true" />
       </section>
 
       <TeamSection />
