@@ -4,7 +4,7 @@ import CollageCenter from "../../assets/home/collage-center.jpg";
 import CollageLeft from "../../assets/home/collage-left.jpg";
 import CollageRight from "../../assets/home/collage-right.jpg";
 import Button from "../../components/button/Button";
-import AnimatedHeroLogo from "../../components/hero/AnimatedHeroLogo";
+import HeroBrand, { type HeroBrandMode } from "../../components/hero/HeroBrand";
 import PageHero from "../../components/page-hero/PageHero";
 import useInViewOnce from "../../hooks/useInViewOnce";
 import FaqItem from "./FaqItem";
@@ -12,6 +12,8 @@ import FutureThreeDPlaceholder from "./FutureThreeDPlaceholder";
 import { frequentlyAskedQuestions } from "./homeData";
 import TeamSection from "./TeamSection";
 import styles from "./Home.module.css";
+
+const HERO_BRAND_MODE: HeroBrandMode = "auto";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ const Home = () => {
     <div className={styles.page}>
       <PageHero className={styles.hero} aria-labelledby="home-hero-title">
         <div className={styles.heroContent}>
-          <AnimatedHeroLogo />
+          <HeroBrand mode={HERO_BRAND_MODE} />
           <div className={styles.heroButtons}>
             <Button aria-controls="about" onClick={scrollToAbout}>Learn more</Button>
             <Button variant="light" onClick={() => navigate("/membership")}>Join us</Button>

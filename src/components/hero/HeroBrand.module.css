@@ -1,0 +1,22 @@
+.frame {
+  display: grid;
+  width: 100%;
+  min-height: 19.25rem;
+  place-items: center;
+}
+
+.frame > * {
+  grid-area: 1 / 1;
+}
+
+@media (max-width: 820px) {
+  .frame {
+    min-height: 14.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .frame {
+    min-height: 12rem;
+  }
+}
