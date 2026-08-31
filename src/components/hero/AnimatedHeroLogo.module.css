@@ -67,7 +67,7 @@
   }
 
   .animated .writingGuide {
-    stroke-dasharray: 100;
+    stroke-dasharray: 100 200;
     stroke-dashoffset: 100;
     animation: drawStroke var(--draw-duration) var(--draw-easing) var(--draw-delay) forwards;
   }
