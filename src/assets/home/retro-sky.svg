@@ -7,7 +7,7 @@
 .crt-scanline-treadmill {
   transform-box: view-box;
   transform-origin: center;
-  animation: crt-scanline-treadmill 1s linear infinite;
+  animation: crt-scanline-treadmill 11s linear infinite;
 }
 
 @keyframes crt-scanline-treadmill {
@@ -1237,7 +1237,8 @@
 </g>
 <defs>
 <pattern id="crtScanlinePattern_4095_23793" width="1" height="4" patternUnits="userSpaceOnUse">
-<rect width="1" height="1" fill="#FF0000"/>
+<!-- CRT line below, change color for diff color -->
+<rect width="1" height="1" fill="#FA0000"/>
 </pattern>
 <pattern id="pattern0_4095_23793" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_4095_23793" transform="matrix(0.00729927 0 0 0.0129765 0 -1.90065)"/>
