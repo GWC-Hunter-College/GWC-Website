@@ -53,10 +53,9 @@ const paths = {
 
 export const GwcHunterMark = () => {
   const idRoot = useId().replace(/:/g, "");
-  const handwritingShapeMaskId = `${idRoot}-handwriting-shape`;
-  const handwritingRevealMaskId = `${idRoot}-handwriting-reveal`;
   const codeOMaskId = `${idRoot}-code-o`;
-  const codeDMaskId = `${idRoot}-code-d`;
+  const codeDBodyClipId = `${idRoot}-code-d-body`;
+  const codeDAscenderClipId = `${idRoot}-code-d-ascender`;
   const codeEMaskId = `${idRoot}-code-e`;
   const atMaskId = `${idRoot}-at`;
   const hunterUMaskId = `${idRoot}-hunter-u`;
@@ -66,49 +65,37 @@ export const GwcHunterMark = () => {
     <span className={styles.visualLockup} aria-hidden="true">
       <svg className={styles.mark} viewBox="30 88 340 205" focusable="false" aria-hidden="true">
         <defs>
-          <mask id={handwritingShapeMaskId} maskUnits="userSpaceOnUse" x="54" y="116" width="208" height="90">
-            <g fill="white" transform="translate(62.6657 123.257)">
-              <path d={paths.girlsMain} /><path d={paths.girlsDot} />
-            </g>
-            <g fill="white" transform="translate(140.781 123.466)">
-              <path d={paths.whoMain} /><path d={paths.whoDetail} />
-            </g>
-            <g fill="black" transform="translate(62.6657 123.257)">
-              {paths.girlsCounters.map((path) => <path d={path} key={path} />)}
-              <path d={paths.girlsCleanup} stroke="white" strokeLinejoin="round" strokeWidth="2" />
-            </g>
-            <g fill="black" transform="translate(140.781 123.466)">
-              {paths.whoCounters.map((path) => <path d={path} key={path} />)}
-              {paths.whoCleanup.map((path) => (
-                <path d={path} key={path} stroke="white" strokeLinejoin="round" strokeWidth="2" />
-              ))}
-            </g>
-          </mask>
-          <mask id={handwritingRevealMaskId} maskUnits="userSpaceOnUse" x="54" y="116" width="208" height="90">
-            <rect className={styles.handwritingRevealBase} x="54" y="116" width="208" height="90" />
-            <path className={`${styles.writingGuide} ${styles.girlsGuide}`} pathLength="100" d={paths.girlsGuide} />
-            <path className={styles.dotGuide} d={paths.girlsDot} transform="translate(62.6657 123.257)" />
-            <path className={`${styles.writingGuide} ${styles.whoGuide}`} pathLength="100" d={paths.whoGuide} />
-          </mask>
           <mask id={codeOMaskId} maskUnits="userSpaceOnUse" x="55" y="62" width="60" height="68"><path d={paths.codeOOuter} fill="white" /><path d={paths.codeOInner} fill="black" /></mask>
-          <mask id={codeDMaskId} maskUnits="userSpaceOnUse" x="120" y="0" width="60" height="130"><path d={paths.codeDOuter} fill="white" /><path d={paths.codeDInner} fill="black" /></mask>
+          <clipPath id={codeDBodyClipId} clipPathUnits="userSpaceOnUse"><rect x="120" y="64" width="60" height="66" /></clipPath>
+          <clipPath id={codeDAscenderClipId} clipPathUnits="userSpaceOnUse"><rect className={styles.codeDAscender} x="166" y="0" width="12" height="65" /></clipPath>
           <mask id={codeEMaskId} maskUnits="userSpaceOnUse" x="186" y="62" width="57" height="68"><path d={paths.codeEOuter} fill="white" /><path d={paths.codeEInner} fill="black" /></mask>
           <mask id={atMaskId} maskUnits="userSpaceOnUse" x="-2" y="0" width="36" height="41"><path d={paths.atOuter} fill="white" /><path d={paths.atInnerOuter} fill="white" /><path d={paths.atCounter} fill="black" /></mask>
           <mask id={hunterUMaskId} maskUnits="userSpaceOnUse" x="74" y="0" width="43" height="42"><path d={paths.hunterUOuter} fill="white" /><path d={paths.hunterUCounter} fill="black" /></mask>
           <mask id={hunterRMaskId} maskUnits="userSpaceOnUse" x="226" y="0" width="40" height="42"><path d={paths.hunterROuter} fill="white" /><path d={paths.hunterRCounter} fill="black" /></mask>
         </defs>
 
-        <g mask={`url(#${handwritingShapeMaskId})`} data-logo-part="girls-who">
-          <g mask={`url(#${handwritingRevealMaskId})`}>
-            <g transform="translate(62.6657 123.257)" data-logo-part="girls"><path d={paths.girlsMain} fill="#87E4EC" /><path d={paths.girlsDot} fill="#BAEEF5" /></g>
-            <g transform="translate(140.781 123.466)" data-logo-part="who"><path d={paths.whoMain} fill="#74DEE4" /><path d={paths.whoDetail} fill="#9EE8EC" /></g>
+        <g className={styles.smoothScript} transform="translate(52 112) scale(0.29 0.38)" data-logo-part="girls-who">
+          <path className={`${styles.scriptStroke} ${styles.gStroke}`} pathLength="100" d="M45 108C45 84 75 75 92 88C108 102 95 128 74 132C54 136 41 121 45 104C50 87 74 85 92 95C103 102 103 122 101 141C98 170 86 194 63 194C43 194 34 182 41 171C49 158 75 161 101 145" />
+          <path className={`${styles.scriptStroke} ${styles.iStroke}`} pathLength="100" d="M105 145C112 140 116 132 116 108C116 119 113 129 113 135C113 142 120 144 128 136" />
+          <circle className={styles.scriptDot} cx="117" cy="84" r="7" />
+          <path className={`${styles.scriptStroke} ${styles.rStroke}`} pathLength="100" d="M128 136C137 130 141 119 142 107L141 135C145 120 154 110 164 110C173 110 176 117 172 123" />
+          <path className={`${styles.scriptStroke} ${styles.lStroke}`} pathLength="100" d="M172 123C184 114 192 98 196 78C201 51 197 32 188 34C178 36 176 58 178 82C180 108 187 132 202 137C214 141 227 134 236 124" />
+          <path className={`${styles.scriptStroke} ${styles.sStroke}`} pathLength="100" d="M279 111C264 101 242 109 242 122C242 134 256 136 268 139C281 142 281 152 271 157C259 163 242 157 235 149" />
+          <g transform="translate(-58)">
+            <path className={`${styles.scriptStroke} ${styles.wStroke}`} pathLength="100" d="M385 108C387 132 395 145 407 132L420 105C417 133 425 145 438 132L452 104C449 129 455 140 467 132" />
+            <path className={`${styles.scriptStroke} ${styles.hStroke}`} pathLength="100" d="M467 132C480 116 489 93 494 66C499 40 496 27 488 29C479 32 477 51 478 75L479 137C487 116 501 102 515 104C529 106 531 119 523 129C518 136 521 143 531 141" />
+            <path className={`${styles.scriptStroke} ${styles.oStroke}`} pathLength="100" d="M531 141C544 138 551 130 555 118C560 103 578 100 589 107C602 115 600 131 590 139C578 148 561 143 559 130C557 115 572 106 590 111C608 116 618 129 634 128" />
+            <path className={`${styles.scriptStroke} ${styles.flourishStroke}`} pathLength="100" d="M632 128C664 128 693 120 718 105" />
           </g>
         </g>
 
         <g transform="translate(91.7488 105)" data-logo-part="code">
           <path d={paths.codeC} fill="#D1ADF9" data-code-letter="c" />
           <rect x="55" y="62" width="60" height="68" fill="#D1ADF9" mask={`url(#${codeOMaskId})`} data-code-letter="o" />
-          <g mask={`url(#${codeDMaskId})`} data-code-letter="d"><rect x="120" y="64" width="60" height="66" fill="#D1ADF9" /><rect className={styles.codeDAscender} x="120" y="0" width="60" height="65" fill="#D1ADF9" /></g>
+          <g data-code-letter="d">
+            <path d={`${paths.codeDOuter} ${paths.codeDInner}`} fill="#D1ADF9" fillRule="evenodd" clipPath={`url(#${codeDBodyClipId})`} />
+            <path d={`${paths.codeDOuter} ${paths.codeDInner}`} fill="#D1ADF9" fillRule="evenodd" clipPath={`url(#${codeDAscenderClipId})`} />
+          </g>
           <rect x="186" y="62" width="57" height="68" fill="#D1ADF9" mask={`url(#${codeEMaskId})`} data-code-letter="e" />
         </g>
 

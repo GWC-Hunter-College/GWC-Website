@@ -33,17 +33,24 @@
   overflow: visible;
 }
 
-.handwritingRevealBase { fill: white; }
-
-.writingGuide {
+.smoothScript {
   fill: none;
-  stroke: white;
-  stroke-linecap: butt;
-  stroke-linejoin: round;
-  stroke-width: 12;
+  stroke: #87e4ec;
 }
 
-.dotGuide { fill: white; }
+.scriptStroke {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.scriptDot {
+  fill: #baeef5;
+  stroke: none;
+  vector-effect: non-scaling-stroke;
+}
 
 .codeDAscender {
   transform-box: fill-box;
@@ -61,26 +68,28 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .animated .handwritingRevealBase {
-    fill: black;
-    animation: completeHandwritingMask 1ms step-end 2.36s forwards;
-  }
-
-  .animated .writingGuide {
+  .animated .scriptStroke {
     stroke-dasharray: 100 200;
     stroke-dashoffset: 100;
-    animation: drawStroke var(--draw-duration) var(--draw-easing) var(--draw-delay) forwards;
+    animation: drawStroke var(--script-duration) var(--draw-easing) var(--script-delay) forwards;
   }
 
-  .animated .girlsGuide { --draw-delay: 0.66s; --draw-duration: 1.04s; }
-  .animated .whoGuide { --draw-delay: 1.55s; --draw-duration: 0.81s; }
+  .animated .gStroke { --script-delay: 0.66s; --script-duration: 0.5s; }
+  .animated .iStroke { --script-delay: 1.05s; --script-duration: 0.2s; }
+  .animated .rStroke { --script-delay: 1.2s; --script-duration: 0.2s; }
+  .animated .lStroke { --script-delay: 1.32s; --script-duration: 0.3s; }
+  .animated .sStroke { --script-delay: 1.56s; --script-duration: 0.2s; }
+  .animated .wStroke { --script-delay: 1.69s; --script-duration: 0.22s; }
+  .animated .hStroke { --script-delay: 1.86s; --script-duration: 0.27s; }
+  .animated .oStroke { --script-delay: 2.05s; --script-duration: 0.22s; }
+  .animated .flourishStroke { --script-delay: 2.23s; --script-duration: 0.13s; }
 
-  .animated .dotGuide {
+  .animated .scriptDot {
     opacity: 0;
     transform: scale(0);
     transform-box: fill-box;
     transform-origin: center;
-    animation: placeDot 0.14s ease-out 1.28s forwards;
+    animation: placeDot 0.14s ease-out 1.15s forwards;
   }
 
   .animated .codeDAscender {
@@ -99,7 +108,6 @@
 }
 
 @keyframes drawStroke { to { stroke-dashoffset: 0; } }
-@keyframes completeHandwritingMask { to { fill: white; } }
 @keyframes extendD { to { transform: scaleY(1); } }
 @keyframes revealAffiliationPart { to { opacity: 1; } }
 @keyframes placeDot { to { opacity: 1; transform: scale(1); } }
