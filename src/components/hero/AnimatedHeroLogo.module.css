@@ -33,24 +33,17 @@
   overflow: visible;
 }
 
-.smoothScript {
-  fill: none;
-  stroke: #87e4ec;
-}
-
-.scriptStroke {
+.writingGuide {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 5.5;
-  vector-effect: non-scaling-stroke;
+  stroke: white;
+  stroke-width: 14;
 }
 
-.scriptDot {
-  fill: #baeef5;
-  stroke: none;
-  vector-effect: non-scaling-stroke;
-}
+.handwritingRevealBase { fill: white; }
+
+.dotGuide { fill: white; }
 
 .codeDAscender {
   transform-box: fill-box;
@@ -68,23 +61,30 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .animated .scriptStroke {
-    stroke-dasharray: var(--script-length) 1000;
-    stroke-dashoffset: var(--script-length);
-    animation: drawStroke var(--script-duration) var(--draw-easing) var(--script-delay) forwards;
+  .animated .handwritingRevealBase {
+    fill: black;
+    animation: completeHandwritingMask 1ms step-end 2.36s forwards;
   }
 
-  .animated .gStroke { --script-delay: 0.66s; --script-duration: 0.5s; --script-length: 220; }
-  .animated .iStroke { --script-delay: 1.05s; --script-duration: 0.2s; --script-length: 40; }
-  .animated .rStroke { --script-delay: 1.2s; --script-duration: 0.2s; --script-length: 50; }
-  .animated .lStroke { --script-delay: 1.32s; --script-duration: 0.3s; --script-length: 105; }
-  .animated .sStroke { --script-delay: 1.56s; --script-duration: 0.2s; --script-length: 70; }
-  .animated .wStroke { --script-delay: 1.69s; --script-duration: 0.22s; --script-length: 65; }
-  .animated .hStroke { --script-delay: 1.86s; --script-duration: 0.27s; --script-length: 90; }
-  .animated .oStroke { --script-delay: 2.05s; --script-duration: 0.22s; --script-length: 55; }
-  .animated .flourishStroke { --script-delay: 2.23s; --script-duration: 0.13s; --script-length: 12; }
+  .animated .writingGuide {
+    stroke-dasharray: var(--guide-length) 1000;
+    stroke-dashoffset: var(--guide-length);
+    animation: drawStroke var(--draw-duration) var(--draw-easing) var(--draw-delay) forwards;
+  }
 
-  .animated .scriptDot {
+  .animated .girlsGuide {
+    --draw-delay: 0.66s;
+    --draw-duration: 1.04s;
+    --guide-length: 320;
+  }
+
+  .animated .whoGuide {
+    --draw-delay: 1.55s;
+    --draw-duration: 0.81s;
+    --guide-length: 420;
+  }
+
+  .animated .dotGuide {
     opacity: 0;
     transform: scale(0);
     transform-box: fill-box;
@@ -108,6 +108,7 @@
 }
 
 @keyframes drawStroke { to { stroke-dashoffset: 0; } }
+@keyframes completeHandwritingMask { to { fill: white; } }
 @keyframes extendD { to { transform: scaleY(1); } }
 @keyframes revealAffiliationPart { to { opacity: 1; } }
 @keyframes placeDot { to { opacity: 1; transform: scale(1); } }

@@ -62,8 +62,12 @@ const officialHunterPaths = {
   r: "M226 0H242.5C253.5 0 259 5 259 13C259 18.5 256 22.5 251 24.5C255 26.5 257 31.5 260 40H248C246 32.5 244 28 239.5 28H237V40H226ZM237 9.5V19H242C245.5 19 247.5 17 247.5 14.25C247.5 11.25 245.5 9.5 242 9.5Z",
 } as const;
 
+const whoDotPath = "M33.6777 31.9799C32.4597 32.7019 30.0087 34.2679 28.644 33.8027L28.4755 33.3022C29.072 31.5124 30.6715 30.4731 32.1305 29.2776C32.6592 30.1709 33.175 31.0717 33.6777 31.9799Z";
+
 export const GwcHunterMark = () => {
   const idRoot = useId().replace(/:/g, "");
+  const handwritingShapeMaskId = `${idRoot}-handwriting-shape`;
+  const handwritingRevealMaskId = `${idRoot}-handwriting-reveal`;
   const codeOMaskId = `${idRoot}-code-o`;
   const codeDBodyClipId = `${idRoot}-code-d-body`;
   const codeDAscenderClipId = `${idRoot}-code-d-ascender`;
@@ -74,6 +78,31 @@ export const GwcHunterMark = () => {
     <span className={styles.visualLockup} aria-hidden="true">
       <svg className={styles.mark} viewBox="30 88 340 205" focusable="false" aria-hidden="true">
         <defs>
+          <mask id={handwritingShapeMaskId} maskUnits="userSpaceOnUse" x="54" y="116" width="208" height="90">
+            <g fill="white" transform="translate(62.6657 123.257)">
+              <path d={paths.girlsMain} />
+              <path d={paths.girlsDot} />
+            </g>
+            <g fill="white" transform="translate(140.781 123.466)">
+              <path d={paths.whoMain} />
+              <path d={paths.whoDetail} />
+              <path d={whoDotPath} />
+            </g>
+            <g fill="black" transform="translate(62.6657 123.257)">
+              {paths.girlsCounters.map((path) => <path d={path} key={path} />)}
+              <path d={paths.girlsCleanup} />
+            </g>
+            <g fill="black" transform="translate(140.781 123.466)">
+              {paths.whoCounters.map((path) => <path d={path} key={path} />)}
+              {paths.whoCleanup.map((path) => <path d={path} key={path} />)}
+            </g>
+          </mask>
+          <mask id={handwritingRevealMaskId} maskUnits="userSpaceOnUse" x="54" y="116" width="208" height="90">
+            <rect className={styles.handwritingRevealBase} x="54" y="116" width="208" height="90" />
+            <path className={`${styles.writingGuide} ${styles.girlsGuide}`} d={paths.girlsGuide} />
+            <path className={styles.dotGuide} d={paths.girlsDot} transform="translate(62.6657 123.257)" />
+            <path className={`${styles.writingGuide} ${styles.whoGuide}`} d={paths.whoGuide} />
+          </mask>
           <mask id={codeOMaskId} maskUnits="userSpaceOnUse" x="55" y="62" width="60" height="68"><path d={paths.codeOOuter} fill="white" /><path d={paths.codeOInner} fill="black" /></mask>
           <clipPath id={codeDBodyClipId} clipPathUnits="userSpaceOnUse"><rect x="120" y="64" width="60" height="66" /></clipPath>
           <clipPath id={codeDAscenderClipId} clipPathUnits="userSpaceOnUse"><rect className={styles.codeDAscender} x="166" y="0" width="12" height="65" /></clipPath>
@@ -81,20 +110,17 @@ export const GwcHunterMark = () => {
           <mask id={atMaskId} maskUnits="userSpaceOnUse" x="-2" y="0" width="36" height="41"><path d={paths.atOuter} fill="white" /><path d={paths.atInnerOuter} fill="white" /><path d={paths.atCounter} fill="black" /></mask>
         </defs>
 
-        <g className={styles.smoothScript} transform="translate(3 19) scale(2.2 2)" data-logo-part="girls-who">
-          <path className={`${styles.scriptStroke} ${styles.gStroke}`} pathLength="1" d="M39.5 68C38 63 34.5 61 31 62C27.5 63 26.5 67 28.5 70.5C31 74.5 36.5 74.5 39.5 70C41 67.5 40 64 36.5 63C31.5 61.5 28 65 29.5 69.5C31 73.5 35.5 74 39.5 70C39.5 77 36.5 89 31.5 90C27.5 91 26 87.5 27.5 83.5C29.5 78.5 35 73.5 40.5 70" />
-          <g transform="translate(39 0) scale(0.85 1) translate(-39 0)">
-            <path className={`${styles.scriptStroke} ${styles.iStroke}`} pathLength="1" d="M39 71C41.5 70 43 67 44 64L43.5 72C43 76 45.5 77 47.5 72" />
-            <circle className={styles.scriptDot} cx="44.5" cy="60" r="1.55" />
-            <path className={`${styles.scriptStroke} ${styles.rStroke}`} pathLength="1" d="M47 72C49 70.5 50.5 67 51 64L50.5 73C52 68 54 65 56 65C58 65 59 67.5 57.5 69.5" />
-            <path className={`${styles.scriptStroke} ${styles.lStroke}`} pathLength="1" d="M57 69.5C60 68 62 63 62.5 56C63 50 65.5 48 67 51C69 56 66 64 63 68C65 74 68.5 75 71 71" />
-            <path className={`${styles.scriptStroke} ${styles.sStroke}`} pathLength="1" d="M77.5 67.8C73.6 66 67.8 67.4 67.8 70C67.8 72 71.5 72.2 74.8 72.7C78.2 73.3 78.2 75 75.6 75.9C72.5 77 67.8 75.9 66 74.5" />
-          </g>
-          <g transform="translate(76.5 0) scale(0.66 1) translate(-79 0)">
-            <path className={`${styles.scriptStroke} ${styles.wStroke}`} pathLength="1" d="M79.5 68C79 73 80.5 76 83 76C85.5 76 87 72 88 68C87.5 73 89 76 91.5 76C94 76 96 72 97 68" />
-            <path className={`${styles.scriptStroke} ${styles.hStroke}`} pathLength="1" d="M96 72C99 68 100.5 62 101 56C101.5 50 104 48.5 105.5 51.5C107.5 56 104.5 64 101.5 68L101.5 75C104 69 107 66.5 110 68C113 69.5 111 73 112 75C113 77 115.5 76 117 72" />
-            <path className={`${styles.scriptStroke} ${styles.oStroke}`} pathLength="1" d="M116.5 72C118 68 121.5 66.5 124.5 68C127.5 69.5 128 73 126 75C124 77.5 120.5 77 119.5 74C118.5 70.5 121.5 68 124.5 69C129 70 131.5 73 134 73" />
-            <path className={`${styles.scriptStroke} ${styles.flourishStroke}`} pathLength="1" d="M133.5 73C136 74 138.5 72.5 140 70" />
+        <g mask={`url(#${handwritingShapeMaskId})`} data-logo-part="girls-who">
+          <g mask={`url(#${handwritingRevealMaskId})`}>
+            <g transform="translate(62.6657 123.257)" data-logo-part="girls">
+              <path d={paths.girlsMain} fill="#87E4EC" />
+              <path d={paths.girlsDot} fill="#BAEEF5" />
+            </g>
+            <g transform="translate(140.781 123.466)" data-logo-part="who">
+              <path d={paths.whoMain} fill="#74DEE4" />
+              <path d={paths.whoDetail} fill="#9EE8EC" />
+              <path d={whoDotPath} fill="#BAEEF5" />
+            </g>
           </g>
         </g>
 
