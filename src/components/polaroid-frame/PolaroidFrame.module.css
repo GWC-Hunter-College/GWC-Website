@@ -1,0 +1,14 @@
+.frame {
+  margin: 0;
+  padding: clamp(0.7rem, 1.4vw, 1rem) clamp(0.7rem, 1.4vw, 1rem)
+    clamp(1.6rem, 3.2vw, 2.35rem);
+  background: #f4f2ee;
+  box-shadow: 0 1.15rem 2.4rem rgb(9 5 15 / 28%), 0 0.2rem 0.45rem rgb(9 5 15 / 18%);
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: #d9d9d9;
+}

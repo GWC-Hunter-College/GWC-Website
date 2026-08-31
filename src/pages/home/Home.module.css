@@ -32,51 +32,6 @@
   text-align: center;
 }
 
-.heroTitle {
-  width: 100%;
-  margin: 0;
-  font-size: clamp(4rem, 7vw, 6.5rem);
-  font-style: italic;
-  line-height: 0.75;
-  text-transform: uppercase;
-}
-
-.titleTop {
-  display: block;
-  white-space: nowrap;
-}
-
-.titleTop strong {
-  font-weight: 900;
-}
-
-.titleTop span {
-  font-weight: 400;
-}
-
-.titleBottom {
-  display: flex;
-  width: calc(100% + (2 * var(--page-gutter)));
-  margin-left: calc(-1 * var(--page-gutter));
-  align-items: center;
-  gap: 1rem;
-  font-weight: 900;
-}
-
-.titleBottom::before,
-.titleBottom::after {
-  height: 0.3rem;
-  flex: 1;
-  background: currentColor;
-  content: "";
-}
-
-.heroSubtitle {
-  margin: 0.75rem 0 0;
-  font-size: clamp(1.6rem, 2.7vw, 2.5rem);
-  font-style: italic;
-}
-
 .heroButtons {
   display: flex;
   margin-top: 1.1rem;
@@ -149,12 +104,16 @@
 }
 
 .photoGroup figure {
+  --photo-transition-delay: 0ms;
+
   position: relative;
   z-index: 1;
   margin: 0;
   padding: clamp(0.65rem, 1.4vw, 1.1rem);
   background: #efefef;
   box-shadow: 0 1rem 2rem rgb(13 3 40 / 20%);
+  transition: transform 900ms cubic-bezier(0.45, 0, 0.2, 1) var(--photo-transition-delay);
+  will-change: transform;
 }
 
 .photoGroup img {
@@ -164,16 +123,37 @@
 }
 
 .photoLeft {
+  --photo-transition-delay: 0ms;
+
   transform: rotate(-21deg) translate(8%, 3%);
 }
 
 .photoCenter {
+  --photo-transition-delay: 55ms;
+
   z-index: 2 !important;
   transform: rotate(4deg) scale(0.92);
 }
 
 .photoRight {
+  --photo-transition-delay: 110ms;
+
   transform: rotate(26deg) translate(-8%, 2%);
+}
+
+.collage[data-in-view="false"] .photoLeft {
+  z-index: 1;
+  transform: translate(98%, 2%) rotate(-8deg) scale(0.88);
+}
+
+.collage[data-in-view="false"] .photoCenter {
+  z-index: 3 !important;
+  transform: rotate(2deg) scale(0.91);
+}
+
+.collage[data-in-view="false"] .photoRight {
+  z-index: 2;
+  transform: translate(-98%, -1%) rotate(7deg) scale(0.89);
 }
 
 .faq {
@@ -194,42 +174,6 @@
   border-top: 0.25rem solid var(--color-white);
 }
 
-.faqItem {
-  border-bottom: 0.25rem solid var(--color-white);
-}
-
-.faqItem summary {
-  position: relative;
-  padding: 1rem 3.5rem 1rem 0;
-  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
-  cursor: pointer;
-  list-style: none;
-}
-
-.faqItem summary::-webkit-details-marker {
-  display: none;
-}
-
-.faqItem summary::after {
-  position: absolute;
-  top: 50%;
-  right: 0.75rem;
-  content: "→";
-  font-size: 1.75rem;
-  transform: translateY(-50%);
-}
-
-.faqItem[open] summary::after {
-  transform: translateY(-50%) rotate(90deg);
-}
-
-.faqItem p {
-  max-width: 55rem;
-  margin: 0;
-  padding: 0 3.5rem 1.25rem 0;
-  line-height: 1.6;
-}
-
 @media (min-width: 901px) {
   .hero {
     min-height: clamp(42rem, 87svh, 52rem);
@@ -244,15 +188,6 @@
   .heroContent {
     min-height: inherit;
     padding-top: 9rem;
-  }
-
-  .heroTitle {
-    font-size: clamp(3.25rem, 18vw, 6.5rem);
-    line-height: 0.84;
-  }
-
-  .titleTop {
-    white-space: normal;
   }
 
   .about {
@@ -327,5 +262,23 @@
   .photoRight {
     justify-self: start;
     transform: rotate(-3deg);
+  }
+
+  .collage[data-in-view="false"] .photoLeft {
+    transform: translate(18%, 82%) rotate(-7deg) scale(0.9);
+  }
+
+  .collage[data-in-view="false"] .photoCenter {
+    transform: translateX(-18%) rotate(2deg) scale(0.92);
+  }
+
+  .collage[data-in-view="false"] .photoRight {
+    transform: translate(18%, -82%) rotate(7deg) scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photoGroup figure {
+    transition: none;
   }
 }

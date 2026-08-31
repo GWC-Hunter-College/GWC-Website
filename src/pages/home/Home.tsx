@@ -1,18 +1,50 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CollageCenter from "../../assets/home/collage-center.jpg";
 import CollageLeft from "../../assets/home/collage-left.jpg";
 import CollageRight from "../../assets/home/collage-right.jpg";
 import Button from "../../components/button/Button";
+import HeroBrand, { type HeroBrandMode } from "../../components/hero/HeroBrand";
 import PageHero from "../../components/page-hero/PageHero";
+import useInViewPair from "../../hooks/useInViewPair";
+import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
+import FaqItem from "./FaqItem";
 import FutureThreeDPlaceholder from "./FutureThreeDPlaceholder";
 import { frequentlyAskedQuestions } from "./homeData";
 import TeamSection from "./TeamSection";
 import styles from "./Home.module.css";
 
+const HERO_BRAND_MODE: HeroBrandMode = "static";
+const POLAROID_OPEN_DELAY_MS = 50;
+const POLAROID_CLOSE_DELAY_MS = 250;
+
 const Home = () => {
   const navigate = useNavigate();
   const aboutSectionRef = useRef<HTMLElement>(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [polaroidsOpen, setPolaroidsOpen] = useState(false);
+  const [polaroidHovered, setPolaroidHovered] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const {
+    firstRef: topBarRef,
+    secondRef: bottomBarRef,
+    firstVisible: topBarVisible,
+    secondVisible: bottomBarVisible,
+  } = useInViewPair<HTMLDivElement>();
+  const polaroidSectionFullyVisible = topBarVisible && bottomBarVisible;
+  const shouldOpenPolaroids = polaroidSectionFullyVisible || polaroidHovered;
+
+  useEffect(() => {
+    if (prefersReducedMotion || polaroidsOpen === shouldOpenPolaroids) {
+      return;
+    }
+
+    const transitionTimeout = window.setTimeout(() => {
+      setPolaroidsOpen(shouldOpenPolaroids);
+    }, shouldOpenPolaroids ? POLAROID_OPEN_DELAY_MS : POLAROID_CLOSE_DELAY_MS);
+
+    return () => window.clearTimeout(transitionTimeout);
+  }, [polaroidsOpen, prefersReducedMotion, shouldOpenPolaroids]);
 
   const scrollToAbout = () => {
     aboutSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -20,15 +52,9 @@ const Home = () => {
 
   return (
     <div className={styles.page}>
-      <PageHero className={styles.hero}>
+      <PageHero className={styles.hero} aria-labelledby="home-hero-title">
         <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
-            <span className={styles.titleTop}>
-              <strong>Girls</strong> <span>Who</span>
-            </span>
-            <span className={styles.titleBottom}>Code</span>
-          </h1>
-          <p className={styles.heroSubtitle}>hunter college</p>
+          <HeroBrand mode={HERO_BRAND_MODE} />
           <div className={styles.heroButtons}>
             <Button aria-controls="about" onClick={scrollToAbout}>Learn more</Button>
             <Button variant="light" onClick={() => navigate("/membership")}>Join us</Button>
@@ -56,20 +82,33 @@ const Home = () => {
         </div>
       </section>
 
-      <section className={styles.collage} aria-label="Girls Who Code community photos">
-        <div className={styles.sectionDivider} aria-hidden="true" />
-        <div className={styles.photoGroup}>
-          <figure className={styles.photoLeft}>
+      <section
+        className={styles.collage}
+        data-in-view={prefersReducedMotion || polaroidsOpen}
+        aria-label="Girls Who Code community photos"
+      >
+        <div className={styles.sectionDivider} ref={topBarRef} aria-hidden="true" />
+        <div className={styles.photoGroup} onMouseLeave={() => setPolaroidHovered(false)}>
+          <figure
+            className={styles.photoLeft}
+            onMouseEnter={() => setPolaroidHovered(true)}
+          >
             <img src={CollageLeft} alt="Students attending a Girls Who Code presentation" />
           </figure>
-          <figure className={styles.photoCenter}>
+          <figure
+            className={styles.photoCenter}
+            onMouseEnter={() => setPolaroidHovered(true)}
+          >
             <img src={CollageCenter} alt="Girls Who Code members gathering together" />
           </figure>
-          <figure className={styles.photoRight}>
+          <figure
+            className={styles.photoRight}
+            onMouseEnter={() => setPolaroidHovered(true)}
+          >
             <img src={CollageRight} alt="Girls Who Code members at a club event" />
           </figure>
         </div>
-        <div className={styles.sectionDivider} aria-hidden="true" />
+        <div className={styles.sectionDivider} ref={bottomBarRef} aria-hidden="true" />
       </section>
 
       <TeamSection />
@@ -77,11 +116,14 @@ const Home = () => {
       <section className={styles.faq} aria-labelledby="faq-heading">
         <h2 id="faq-heading">FAQ</h2>
         <div className={styles.faqList}>
-          {frequentlyAskedQuestions.map((item) => (
-            <details className={styles.faqItem} key={item.question}>
-              <summary>{item.question}</summary>
-              <p>{item.answer}</p>
-            </details>
+          {frequentlyAskedQuestions.map((item, index) => (
+            <FaqItem
+              key={item.question}
+              question={item.question}
+              answer={item.answer}
+              isOpen={openFaqIndex === index}
+              onOpenChange={(isOpen) => setOpenFaqIndex(isOpen ? index : null)}
+            />
           ))}
         </div>
       </section>

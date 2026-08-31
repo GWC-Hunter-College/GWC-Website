@@ -1,3 +1,4 @@
+/*
 import { useState, type FormEvent } from "react";
 import Button from "../../components/button/Button";
 import DecorativeArrow from "../../components/decorative-arrow/DecorativeArrow";
@@ -156,6 +157,26 @@ const Membership = () => {
           </form>
         </div>
       </section>
+    </div>
+  );
+};
+
+export default Membership;
+*/
+
+import PageHero from "../../components/page-hero/PageHero";
+import styles from "./Membership.module.css";
+
+const Membership = () => {
+  return (
+    <div className={styles.workInProgressPage}>
+      <PageHero className={styles.workInProgressHero} aria-labelledby="membership-title">
+        <div className={styles.workInProgressContent}>
+          <p className={styles.workInProgressLabel}>Membership</p>
+          <h1 id="membership-title">Work in progress</h1>
+          <p>We’re building this page now. Check back soon to become a member!</p>
+        </div>
+      </PageHero>
     </div>
   );
 };
