@@ -1,19 +1,28 @@
 <svg width="1440" height="810" viewBox="0 0 1440 810" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <style>
-.crt-line-pattern {
-  transform-box: view-box;
-  transform-origin: center;
-  animation: crt-line-drift 80s linear infinite alternate;
+.crt-line-layer > rect[id^="Scan Line"] {
+  display: none;
 }
 
-@keyframes crt-line-drift {
-  from { transform: translateY(-4px); }
-  to { transform: translateY(4px); }
+.crt-scanline-treadmill {
+  transform-box: view-box;
+  transform-origin: center;
+  animation: crt-scanline-treadmill 1s linear infinite;
+}
+
+@keyframes crt-scanline-treadmill {
+  from { transform: translateY(0); }
+  to { transform: translateY(-20px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .crt-line-pattern {
+  .crt-line-layer > rect[id^="Scan Line"] {
+    display: inline;
+  }
+
+  .crt-scanline-treadmill {
     animation: none;
+    display: none;
     transform: none;
   }
 }
@@ -248,7 +257,7 @@
 <circle id="Sun Glow Ring" cx="855" cy="530" r="335" fill="url(#paint4_radial_4095_23793)"/>
 <circle id="Sun Disc" cx="855" cy="530" r="310" fill="url(#paint5_linear_4095_23793)"/>
 </g>
-<g id="5 &#226;&#128;&#148; CRT Scan Lines (Animatable)" class="crt-line-pattern" clip-path="url(#clip3_4095_23793)">
+<g id="5 &#226;&#128;&#148; CRT Scan Lines (Animatable)" class="crt-line-layer" clip-path="url(#clip3_4095_23793)">
 <rect id="CRT Band" x="559.915" y="430" width="590.169" height="10" rx="5" fill="#731F47" fill-opacity="0.06"/>
 <rect id="CRT Band_2" x="548.897" y="475" width="612.206" height="12" rx="6" fill="#731F47" fill-opacity="0.09"/>
 <rect id="CRT Band_3" x="545.103" y="515" width="619.794" height="14" rx="7" fill="#731F47" fill-opacity="0.12"/>
@@ -258,6 +267,9 @@
 <rect id="CRT Band_7" x="585.957" y="675" width="538.086" height="18" rx="9" fill="#731F47" fill-opacity="0.18"/>
 <rect id="CRT Band_8" x="614.012" y="715" width="481.975" height="20" rx="10" fill="#731F47" fill-opacity="0.14"/>
 <rect id="CRT Band_9" x="647.154" y="750" width="415.692" height="20" rx="10" fill="#731F47" fill-opacity="0.1"/>
+<g class="crt-scanline-treadmill">
+<rect x="545" y="180" width="620" height="700" fill="url(#crtScanlinePattern_4095_23793)"/>
+</g>
 <rect id="Scan Line" x="805.361" y="224" width="99.2774" height="1" fill="#000005" fill-opacity="0.05"/>
 <rect id="Scan Line_2" x="785.029" y="228" width="139.943" height="1" fill="#000005" fill-opacity="0.05"/>
 <rect id="Scan Line_3" x="769.583" y="232" width="170.833" height="1" fill="#000005" fill-opacity="0.05"/>
@@ -1224,6 +1236,9 @@
 </g>
 </g>
 <defs>
+<pattern id="crtScanlinePattern_4095_23793" width="1" height="4" patternUnits="userSpaceOnUse">
+<rect width="1" height="1" fill="#FF0000"/>
+</pattern>
 <pattern id="pattern0_4095_23793" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_4095_23793" transform="matrix(0.00729927 0 0 0.0129765 0 -1.90065)"/>
 </pattern>
