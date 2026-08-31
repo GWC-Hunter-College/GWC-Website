@@ -254,7 +254,7 @@
 <g id="4 &#226;&#128;&#148; Pink Sun" clip-path="url(#clip2_4095_23793)">
 <circle id="Sun Atmosphere" cx="855" cy="530" r="800" fill="url(#paint2_radial_4095_23793)"/>
 <circle id="Sun Mid Glow" cx="855" cy="530" r="450" fill="url(#paint3_radial_4095_23793)"/>
-<circle id="Sun Glow Ring" cx="855" cy="530" r="335" fill="url(#paint4_radial_4095_23793)"/>
+<circle id="Sun Glow Ring" cx="855" cy="530" r="330" fill="url(#paint4_radial_4095_23793)"/>
 <circle id="Sun Disc" cx="855" cy="530" r="310" fill="url(#paint5_linear_4095_23793)"/>
 </g>
 <g id="5 &#226;&#128;&#148; CRT Scan Lines (Animatable)" class="crt-line-layer" clip-path="url(#clip3_4095_23793)">
@@ -1269,11 +1269,11 @@
 <stop offset="0.6" stop-color="#661A4D" stop-opacity="0.08"/>
 <stop offset="1" stop-color="#400D38" stop-opacity="0"/>
 </radialGradient>
-<radialGradient id="paint4_radial_4095_23793" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(855 530) scale(335)">
-<stop stop-color="#F28099" stop-opacity="0.55"/>
-<stop offset="0.7" stop-color="#E0668C" stop-opacity="0.5"/>
-<stop offset="0.88" stop-color="#C74D7A" stop-opacity="0.4"/>
-<stop offset="0.96" stop-color="#A63366" stop-opacity="0.2"/>
+<radialGradient id="paint4_radial_4095_23793" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(855 530) scale(330)">
+<stop stop-color="#F28099" stop-opacity="0.62"/>
+<stop offset="0.7" stop-color="#E0668C" stop-opacity="0.6"/>
+<stop offset="0.88" stop-color="#C74D7A" stop-opacity="0.46"/>
+<stop offset="0.96" stop-color="#A63366" stop-opacity="0.24"/>
 <stop offset="1" stop-color="#801F4D" stop-opacity="0"/>
 </radialGradient>
 <linearGradient id="paint5_linear_4095_23793" x1="855" y1="220" x2="855" y2="840" gradientUnits="userSpaceOnUse">
