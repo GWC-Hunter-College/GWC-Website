@@ -69,20 +69,20 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .animated .scriptStroke {
-    stroke-dasharray: 100 200;
-    stroke-dashoffset: 100;
+    stroke-dasharray: var(--script-length) 1000;
+    stroke-dashoffset: var(--script-length);
     animation: drawStroke var(--script-duration) var(--draw-easing) var(--script-delay) forwards;
   }
 
-  .animated .gStroke { --script-delay: 0.66s; --script-duration: 0.5s; }
-  .animated .iStroke { --script-delay: 1.05s; --script-duration: 0.2s; }
-  .animated .rStroke { --script-delay: 1.2s; --script-duration: 0.2s; }
-  .animated .lStroke { --script-delay: 1.32s; --script-duration: 0.3s; }
-  .animated .sStroke { --script-delay: 1.56s; --script-duration: 0.2s; }
-  .animated .wStroke { --script-delay: 1.69s; --script-duration: 0.22s; }
-  .animated .hStroke { --script-delay: 1.86s; --script-duration: 0.27s; }
-  .animated .oStroke { --script-delay: 2.05s; --script-duration: 0.22s; }
-  .animated .flourishStroke { --script-delay: 2.23s; --script-duration: 0.13s; }
+  .animated .gStroke { --script-delay: 0.66s; --script-duration: 0.5s; --script-length: 220; }
+  .animated .iStroke { --script-delay: 1.05s; --script-duration: 0.2s; --script-length: 40; }
+  .animated .rStroke { --script-delay: 1.2s; --script-duration: 0.2s; --script-length: 50; }
+  .animated .lStroke { --script-delay: 1.32s; --script-duration: 0.3s; --script-length: 105; }
+  .animated .sStroke { --script-delay: 1.56s; --script-duration: 0.2s; --script-length: 70; }
+  .animated .wStroke { --script-delay: 1.69s; --script-duration: 0.22s; --script-length: 65; }
+  .animated .hStroke { --script-delay: 1.86s; --script-duration: 0.27s; --script-length: 90; }
+  .animated .oStroke { --script-delay: 2.05s; --script-duration: 0.22s; --script-length: 55; }
+  .animated .flourishStroke { --script-delay: 2.23s; --script-duration: 0.13s; --script-length: 12; }
 
   .animated .scriptDot {
     opacity: 0;
