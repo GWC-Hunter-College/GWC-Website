@@ -1,4 +1,23 @@
 <svg width="1440" height="810" viewBox="0 0 1440 810" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style>
+.crt-line-pattern {
+  transform-box: view-box;
+  transform-origin: center;
+  animation: crt-line-drift 80s linear infinite alternate;
+}
+
+@keyframes crt-line-drift {
+  from { transform: translateY(-4px); }
+  to { transform: translateY(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-line-pattern {
+    animation: none;
+    transform: none;
+  }
+}
+</style>
 <g id="Retro Sky &#226;&#128;&#148; Vector Recreation" clip-path="url(#clip0_4095_23793)">
 <g id="1 &#226;&#128;&#148; Purple Gradient">
 <rect width="1440" height="810" fill="url(#paint0_linear_4095_23793)"/>
@@ -229,7 +248,7 @@
 <circle id="Sun Glow Ring" cx="855" cy="530" r="335" fill="url(#paint4_radial_4095_23793)"/>
 <circle id="Sun Disc" cx="855" cy="530" r="310" fill="url(#paint5_linear_4095_23793)"/>
 </g>
-<g id="5 &#226;&#128;&#148; CRT Scan Lines (Animatable)" clip-path="url(#clip3_4095_23793)">
+<g id="5 &#226;&#128;&#148; CRT Scan Lines (Animatable)" class="crt-line-pattern" clip-path="url(#clip3_4095_23793)">
 <rect id="CRT Band" x="559.915" y="430" width="590.169" height="10" rx="5" fill="#731F47" fill-opacity="0.06"/>
 <rect id="CRT Band_2" x="548.897" y="475" width="612.206" height="12" rx="6" fill="#731F47" fill-opacity="0.09"/>
 <rect id="CRT Band_3" x="545.103" y="515" width="619.794" height="14" rx="7" fill="#731F47" fill-opacity="0.12"/>
@@ -1305,7 +1324,7 @@
 <rect width="1440" height="810" fill="white"/>
 </clipPath>
 <clipPath id="clip3_4095_23793">
-<rect width="1440" height="810" fill="white"/>
+<circle cx="855" cy="530" r="310" fill="white"/>
 </clipPath>
 <clipPath id="clip4_4095_23793">
 <rect width="1440" height="810" fill="white"/>
