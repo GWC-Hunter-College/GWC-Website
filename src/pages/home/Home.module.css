@@ -1,55 +1,23 @@
 .page {
   --home-content-width: 65rem;
 
+  position: relative;
+  isolation: isolate;
   overflow-x: clip;
-  background: var(--color-page);
+  background: transparent;
   color: var(--color-white);
 }
 
-.hero {
-  min-height: clamp(36rem, 72svh, 39rem);
-}
-
-.hero::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgb(30 7 67 / 8%), rgb(59 24 119 / 18%));
-  content: "";
-  pointer-events: none;
-}
-
-.heroContent {
+.page > section {
   position: relative;
   z-index: 1;
-  display: flex;
-  width: min(100%, 1440px);
-  min-height: inherit;
-  margin: 0 auto;
-  padding: clamp(9.5rem, 19vh, 11rem) var(--page-gutter) clamp(1.75rem, 3vh, 2.5rem);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.heroButtons {
-  display: flex;
-  margin-top: 1.1rem;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.heroButtons > button {
-  min-width: 12rem;
-  min-height: 3rem;
-  font-size: clamp(1.15rem, 1.55vw, 1.35rem);
 }
 
 .about {
   position: relative;
   z-index: 2;
   width: min(calc(100% - (2 * var(--page-gutter))), var(--home-content-width));
-  margin: -4rem auto 3rem;
+  margin: clamp(3.5rem, 6vw, 5rem) auto 3rem;
   padding: clamp(2.5rem, 3.5vw, 3rem);
   border-radius: clamp(1.5rem, 3vw, 2.5rem);
   background: var(--color-surface);
@@ -109,14 +77,40 @@
   position: relative;
   z-index: 1;
   margin: 0;
-  padding: clamp(0.65rem, 1.4vw, 1.1rem);
-  background: #efefef;
-  box-shadow: 0 1rem 2rem rgb(13 3 40 / 20%);
   transition: transform 900ms cubic-bezier(0.45, 0, 0.2, 1) var(--photo-transition-delay);
   will-change: transform;
 }
 
-.photoGroup img {
+.photoGroup figure:hover,
+.photoGroup figure:focus-within {
+  z-index: 5 !important;
+}
+
+.photoButton {
+  display: block;
+  width: 100%;
+  padding: clamp(0.65rem, 1.4vw, 1.1rem);
+  border: 0.2rem solid transparent;
+  background: #efefef;
+  box-shadow: 0 1rem 2rem rgb(13 3 40 / 20%);
+  cursor: zoom-in;
+  transition:
+    border-color 180ms ease,
+    box-shadow 220ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photoButton:hover,
+.photoButton:focus-visible {
+  border-color: var(--focus-ring);
+  box-shadow:
+    0 1.25rem 2.5rem rgb(13 3 40 / 32%),
+    0 0 0 0.2rem rgb(255 218 98 / 32%);
+  transform: translateY(-0.35rem) scale(1.018);
+}
+
+.photoButton img {
+  display: block;
   width: 100%;
   height: clamp(20rem, 28vw, 25.5rem);
   object-fit: cover;
@@ -158,8 +152,12 @@
 
 .faq {
   width: min(calc(100% - (2 * var(--page-gutter))), var(--home-content-width));
-  margin: 0 auto;
-  padding: clamp(3rem, 5vw, 4rem) 0 1.5rem;
+  margin: clamp(2rem, 4vw, 3.5rem) auto clamp(3rem, 5vw, 5rem);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: clamp(1.5rem, 3vw, 2.5rem);
+  background: linear-gradient(145deg, rgb(29 14 61 / 94%), rgb(20 10 43 / 97%));
+  box-shadow: 0 1.5rem 3.5rem rgb(9 4 26 / 24%);
 }
 
 .faq h2 {
@@ -175,25 +173,63 @@
 }
 
 @media (min-width: 901px) {
-  .hero {
-    min-height: clamp(42rem, 87svh, 52rem);
+  .page {
+    --home-content-width: 59rem;
+  }
+
+  .about {
+    margin: clamp(3.15rem, 5.4vw, 4.5rem) auto 2.7rem;
+    padding: clamp(2.25rem, 3.15vw, 2.7rem);
+  }
+
+  .about h2 {
+    margin-bottom: 0.9rem;
+    font-size: clamp(2.5rem, 3.85vw, 3.4rem);
+  }
+
+  .aboutGrid {
+    gap: clamp(1.35rem, 2.25vw, 2.25rem);
+  }
+
+  .aboutGrid > p {
+    font-size: clamp(0.95rem, 1vw, 1rem);
+  }
+
+  .collage {
+    width: min(100%, 67rem);
+    padding-bottom: clamp(2.7rem, 4.5vw, 3.6rem);
+  }
+
+  .sectionDivider {
+    width: clamp(9rem, 18vw, 16.75rem);
+    height: 0.275rem;
+    margin-block: clamp(0.7rem, 1.1vw, 1.05rem);
+  }
+
+  .photoGroup {
+    min-height: clamp(22rem, 32.5vw, 28rem);
+  }
+
+  .photoButton {
+    padding: clamp(0.6rem, 1.25vw, 1rem);
+  }
+
+  .photoButton img {
+    height: clamp(18rem, 25.25vw, 23rem);
+  }
+
+  .faq {
+    margin: clamp(1.8rem, 3.6vw, 3.15rem) auto clamp(2.7rem, 4.5vw, 4.5rem);
+    padding: clamp(1.8rem, 3.6vw, 3.15rem);
+    border-radius: clamp(1.35rem, 2.7vw, 2.25rem);
+  }
+
+  .faq h2 {
+    font-size: clamp(2.7rem, 4.5vw, 3.6rem);
   }
 }
 
 @media (max-width: 760px) {
-  .hero {
-    min-height: 40rem;
-  }
-
-  .heroContent {
-    min-height: inherit;
-    padding-top: 9rem;
-  }
-
-  .about {
-    margin-top: -1.5rem;
-  }
-
   .about h2 {
     text-align: center;
   }
@@ -210,7 +246,7 @@
     min-height: 34rem;
   }
 
-  .photoGroup img {
+  .photoButton img {
     height: clamp(13rem, 54vw, 20rem);
   }
 
@@ -244,7 +280,7 @@
     margin: -1.25rem auto;
   }
 
-  .photoGroup img {
+  .photoButton img {
     height: 18rem;
   }
 
@@ -278,7 +314,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .photoGroup figure {
+  .photoGroup figure,
+  .photoButton {
     transition: none;
+  }
+
+  .photoButton:hover,
+  .photoButton:focus-visible {
+    transform: none;
   }
 }

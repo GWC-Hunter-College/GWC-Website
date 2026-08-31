@@ -72,6 +72,12 @@ button {
   outline-offset: 4px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 ::selection {
   color: var(--color-black);
   background: var(--color-accent-light);

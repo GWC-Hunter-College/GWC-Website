@@ -7,9 +7,9 @@
 .heroTitle {
   width: 100%;
   margin: 0;
-  font-size: clamp(4rem, 7vw, 6.5rem);
+  font-size: clamp(5.75rem, 9.5vw, 9.25rem);
   font-style: italic;
-  line-height: 0.75;
+  line-height: 0.72;
   text-transform: uppercase;
 }
 
@@ -28,34 +28,83 @@
 
 .titleBottom {
   display: flex;
-  width: calc(100% + (2 * var(--page-gutter)));
-  margin-left: calc(-1 * var(--page-gutter));
+  width: 100%;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
   font-weight: 900;
 }
 
 .titleBottom::before,
 .titleBottom::after {
-  height: 0.3rem;
+  height: clamp(0.22rem, 0.32vw, 0.34rem);
   flex: 1;
   background: currentColor;
   content: "";
 }
 
+.brand[data-animate-lines="true"] .titleBottom::before {
+  transform-origin: left center;
+}
+
+.brand[data-animate-lines="true"] .titleBottom::after {
+  transform-origin: right center;
+}
+
 .heroSubtitle {
-  margin: 0.75rem 0 0;
-  font-size: clamp(1.6rem, 2.7vw, 2.5rem);
+  margin: 1rem 0 0;
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
   font-style: italic;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .brand[data-animate-lines="true"] .titleBottom::before,
+  .brand[data-animate-lines="true"] .titleBottom::after {
+    animation: growHeroLine 900ms cubic-bezier(0.22, 1, 0.36, 1) 240ms both;
+  }
+}
+
+@keyframes growHeroLine {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (min-width: 901px) {
+  .heroTitle {
+    font-size: clamp(5.25rem, 8.75vw, 8.5rem);
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1.85rem, 3.3vw, 3.2rem);
+  }
 }
 
 @media (max-width: 760px) {
   .heroTitle {
-    font-size: clamp(3.25rem, 18vw, 6.5rem);
+    font-size: clamp(3.6rem, 18vw, 7rem);
     line-height: 0.84;
   }
 
   .titleTop {
     white-space: normal;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1.7rem, 8vw, 2.5rem);
+  }
+}
+
+@media (max-height: 700px) and (min-width: 761px) {
+  .heroTitle {
+    font-size: clamp(4rem, 15svh, 7rem);
+  }
+
+  .heroSubtitle {
+    margin-top: 0.75rem;
+    font-size: clamp(1.65rem, 5svh, 2.5rem);
   }
 }

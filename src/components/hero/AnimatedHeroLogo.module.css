@@ -21,7 +21,7 @@
 
 .visualLockup {
   display: grid;
-  width: min(100%, 34rem);
+  width: min(100%, 46rem);
   margin-inline: auto;
   place-items: center;
 }
@@ -117,9 +117,9 @@
 @keyframes hideCursor { to { opacity: 0; } }
 
 @media (max-width: 820px) {
-  .visualLockup { width: min(100%, 26rem); }
+  .visualLockup { width: min(100%, 32rem); }
 }
 
 @media (max-width: 420px) {
-  .visualLockup { width: min(100%, 20rem); }
+  .visualLockup { width: min(100%, 23rem); }
 }

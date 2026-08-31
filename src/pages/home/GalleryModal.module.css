@@ -1,0 +1,101 @@
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 0;
+  overflow: auto;
+  background: transparent;
+  color: var(--color-black);
+}
+
+.dialog[open] {
+  display: grid;
+  place-items: center;
+}
+
+.dialog::backdrop {
+  background: rgb(9 5 15 / 82%);
+  backdrop-filter: blur(5px);
+}
+
+.frame {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: clamp(0.75rem, 1.5vw, 1.1rem) clamp(0.75rem, 1.5vw, 1.1rem)
+    clamp(2.1rem, 4vw, 3.25rem);
+  background: #f4f2ee;
+  box-shadow: 0 1.5rem 4rem rgb(9 5 15 / 48%), 0 0.25rem 0.75rem rgb(9 5 15 / 28%);
+  transform: rotate(-0.5deg);
+}
+
+.image {
+  width: auto;
+  height: auto;
+  max-height: calc(100dvh - 8rem);
+  object-fit: contain;
+  background: #d9d9d9;
+}
+
+.frame[data-orientation="portrait"] .image {
+  max-width: min(78vw, 32rem);
+}
+
+.frame[data-orientation="landscape"] .image {
+  max-width: min(88vw, 68rem);
+}
+
+.closeButton {
+  position: absolute;
+  z-index: 1;
+  top: -0.85rem;
+  right: -0.85rem;
+  display: grid;
+  width: 2.85rem;
+  height: 2.85rem;
+  padding: 0;
+  border: 3px solid #f4f2ee;
+  border-radius: 50%;
+  place-items: center;
+  background: var(--color-surface);
+  color: var(--color-white);
+  box-shadow: 0 0.45rem 1rem rgb(9 5 15 / 38%);
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.closeButton:hover {
+  background: var(--color-page);
+}
+
+@media (max-width: 520px) {
+  .dialog {
+    padding: 1.25rem;
+  }
+
+  .image,
+  .frame[data-orientation="portrait"] .image,
+  .frame[data-orientation="landscape"] .image {
+    max-width: calc(100vw - 4.5rem);
+    max-height: calc(100dvh - 7.5rem);
+  }
+
+  .closeButton {
+    top: -0.65rem;
+    right: -0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame {
+    transform: none;
+  }
+}

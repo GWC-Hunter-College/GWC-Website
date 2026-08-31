@@ -1,15 +1,13 @@
 
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Sparkle from "../../assets/shared/sparkle.png";
-import Logo from "/logo.png";
 import styles from "./Navbar.module.css";
 
 const navigation = [
   { label: "home", to: "/" },
   { label: "events", to: "/events" },
   { label: "membership", to: "/membership" },
-  { label: "initiatives", to: "/initiatives" },
 ];
 
 const Navbar = () => {
@@ -17,10 +15,6 @@ const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      <Link className={styles.logoLink} to="/" aria-label="Girls Who Code at Hunter College home">
-        <img className={styles.logo} src={Logo} alt="" />
-      </Link>
-
       <button
         className={styles.menuButton}
         type="button"

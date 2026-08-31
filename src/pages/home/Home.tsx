@@ -3,20 +3,41 @@ import { useNavigate } from "react-router-dom";
 import CollageCenter from "../../assets/home/collage-center.jpg";
 import CollageLeft from "../../assets/home/collage-left.jpg";
 import CollageRight from "../../assets/home/collage-right.jpg";
-import Button from "../../components/button/Button";
-import HeroBrand, { type HeroBrandMode } from "../../components/hero/HeroBrand";
-import PageHero from "../../components/page-hero/PageHero";
+import RetroSkyBackground from "../../components/retro-sky-background/RetroSkyBackground";
 import useInViewPair from "../../hooks/useInViewPair";
 import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import FaqItem from "./FaqItem";
 import FutureThreeDPlaceholder from "./FutureThreeDPlaceholder";
+import GalleryModal, { type GalleryPhoto } from "./GalleryModal";
 import { frequentlyAskedQuestions } from "./homeData";
+import HomeHero, { type HomeHeroVersion } from "./HomeHero";
 import TeamSection from "./TeamSection";
 import styles from "./Home.module.css";
 
-const HERO_BRAND_MODE: HeroBrandMode = "static";
+const HOME_HERO_VERSION: HomeHeroVersion = "version-2-motion";
 const POLAROID_OPEN_DELAY_MS = 50;
 const POLAROID_CLOSE_DELAY_MS = 250;
+
+const collagePhotos = [
+  {
+    src: CollageLeft,
+    alt: "Students attending a Girls Who Code presentation",
+    orientation: "portrait",
+    className: styles.photoLeft,
+  },
+  {
+    src: CollageCenter,
+    alt: "Girls Who Code members gathering together",
+    orientation: "landscape",
+    className: styles.photoCenter,
+  },
+  {
+    src: CollageRight,
+    alt: "Girls Who Code members at a club event",
+    orientation: "landscape",
+    className: styles.photoRight,
+  },
+] satisfies ReadonlyArray<GalleryPhoto & { className: string }>;
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,6 +45,7 @@ const Home = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [polaroidsOpen, setPolaroidsOpen] = useState(false);
   const [polaroidHovered, setPolaroidHovered] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
   const {
     firstRef: topBarRef,
@@ -47,20 +69,21 @@ const Home = () => {
   }, [polaroidsOpen, prefersReducedMotion, shouldOpenPolaroids]);
 
   const scrollToAbout = () => {
-    aboutSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    aboutSectionRef.current?.scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
   };
 
   return (
     <div className={styles.page}>
-      <PageHero className={styles.hero} aria-labelledby="home-hero-title">
-        <div className={styles.heroContent}>
-          <HeroBrand mode={HERO_BRAND_MODE} />
-          <div className={styles.heroButtons}>
-            <Button aria-controls="about" onClick={scrollToAbout}>Learn more</Button>
-            <Button variant="light" onClick={() => navigate("/membership")}>Join us</Button>
-          </div>
-        </div>
-      </PageHero>
+      <RetroSkyBackground />
+
+      <HomeHero
+        version={HOME_HERO_VERSION}
+        onJoin={() => navigate("/membership")}
+        onLearnMore={scrollToAbout}
+      />
 
       <section
         className={styles.about}
@@ -88,28 +111,29 @@ const Home = () => {
         aria-label="Girls Who Code community photos"
       >
         <div className={styles.sectionDivider} ref={topBarRef} aria-hidden="true" />
-        <div className={styles.photoGroup} onMouseLeave={() => setPolaroidHovered(false)}>
-          <figure
-            className={styles.photoLeft}
-            onMouseEnter={() => setPolaroidHovered(true)}
-          >
-            <img src={CollageLeft} alt="Students attending a Girls Who Code presentation" />
-          </figure>
-          <figure
-            className={styles.photoCenter}
-            onMouseEnter={() => setPolaroidHovered(true)}
-          >
-            <img src={CollageCenter} alt="Girls Who Code members gathering together" />
-          </figure>
-          <figure
-            className={styles.photoRight}
-            onMouseEnter={() => setPolaroidHovered(true)}
-          >
-            <img src={CollageRight} alt="Girls Who Code members at a club event" />
-          </figure>
+        <div className={styles.photoGroup}>
+          {collagePhotos.map((photo) => (
+            <figure className={photo.className} key={photo.src}>
+              <button
+                className={styles.photoButton}
+                type="button"
+                aria-haspopup="dialog"
+                aria-label={`Open full-size photo: ${photo.alt}`}
+                onMouseEnter={() => setPolaroidHovered(true)}
+                onMouseLeave={() => setPolaroidHovered(false)}
+                onFocus={() => setPolaroidHovered(true)}
+                onBlur={() => setPolaroidHovered(false)}
+                onClick={() => setSelectedPhoto(photo)}
+              >
+                <img src={photo.src} alt="" />
+              </button>
+            </figure>
+          ))}
         </div>
         <div className={styles.sectionDivider} ref={bottomBarRef} aria-hidden="true" />
       </section>
+
+      <GalleryModal photo={selectedPhoto} onClose={() => setSelectedPhoto(null)} />
 
       <TeamSection />
 
