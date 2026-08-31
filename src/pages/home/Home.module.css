@@ -10,6 +10,12 @@
   min-height: clamp(36rem, 72svh, 39rem);
 }
 
+.page .hero {
+  background-image:
+    linear-gradient(rgb(20 5 58 / 34%), rgb(59 24 119 / 26%)),
+    url("../../assets/home/retro-sky.svg");
+}
+
 .hero::after {
   position: absolute;
   inset: 0;
