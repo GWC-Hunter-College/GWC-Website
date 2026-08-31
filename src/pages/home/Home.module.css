@@ -1,9 +1,16 @@
 .page {
   --home-content-width: 65rem;
 
+  position: relative;
+  isolation: isolate;
   overflow-x: clip;
-  background: var(--color-page);
+  background: transparent;
   color: var(--color-white);
+}
+
+.page > section {
+  position: relative;
+  z-index: 1;
 }
 
 .hero {
@@ -11,17 +18,8 @@
 }
 
 .page .hero {
-  background-image:
-    linear-gradient(rgb(20 5 58 / 34%), rgb(59 24 119 / 26%)),
-    url("../../assets/home/retro-sky.svg");
-}
-
-.hero::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgb(30 7 67 / 8%), rgb(59 24 119 / 18%));
-  content: "";
-  pointer-events: none;
+  background-color: transparent;
+  background-image: none;
 }
 
 .heroContent {

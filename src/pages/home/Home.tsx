@@ -6,6 +6,7 @@ import CollageRight from "../../assets/home/collage-right.jpg";
 import Button from "../../components/button/Button";
 import HeroBrand, { type HeroBrandMode } from "../../components/hero/HeroBrand";
 import PageHero from "../../components/page-hero/PageHero";
+import RetroSkyBackground from "../../components/retro-sky-background/RetroSkyBackground";
 import useInViewPair from "../../hooks/useInViewPair";
 import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import FaqItem from "./FaqItem";
@@ -52,6 +53,8 @@ const Home = () => {
 
   return (
     <div className={styles.page}>
+      <RetroSkyBackground />
+
       <PageHero className={styles.hero} aria-labelledby="home-hero-title">
         <div className={styles.heroContent}>
           <HeroBrand mode={HERO_BRAND_MODE} />
