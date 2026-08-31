@@ -14,7 +14,7 @@ import { frequentlyAskedQuestions } from "./homeData";
 import TeamSection from "./TeamSection";
 import styles from "./Home.module.css";
 
-const HERO_BRAND_MODE: HeroBrandMode = "auto";
+const HERO_BRAND_MODE: HeroBrandMode = "static";
 const POLAROID_OPEN_DELAY_MS = 50;
 const POLAROID_CLOSE_DELAY_MS = 250;
 
