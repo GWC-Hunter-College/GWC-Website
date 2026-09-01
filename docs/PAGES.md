@@ -1,14 +1,14 @@
 # Page gallery
 
-These reference images were captured locally at a 1440px desktop width on August 28, 2026. They document the complete frontend presentation rather than a production data state.
+These reference images were captured locally with a 1440 × 900 desktop viewport on August 31, 2026. Reduced motion was enabled so animated elements appear in a deterministic final state. The images document the current frontend presentation rather than a production data state.
 
-Events and Initiatives currently show Work in Progress placeholders. Their images below were captured from the complete implementations preserved in their source files, as requested, so the designs remain available for future development.
+Home is the completed landing experience. Events, Membership, and Initiatives currently show Work in Progress placeholders; their previous implementations remain preserved in source comments for future development.
 
 ## Home
 
 Route: `/`
 
-The Home page introduces the club, provides direct Learn More and Join Us actions, explains the community, shows event photography, presents an interactive member directory, and ends with frequently asked questions.
+The redesigned Home page combines a full-viewport hero with the fixed retro sky, glowing CRT sun, refined Girls Who Code @ Hunter presentation, Join Us action, and Scroll to Learn More cue. The page continues through the Who Are We introduction, a viewport- and hover-triggered Polaroid gallery with full-size photo dialogs, an interactive team directory, and an FAQ accordion.
 
 ![Full Home page](screenshots/home.png)
 
@@ -16,30 +16,46 @@ The Home page introduces the club, provides direct Learn More and Join Us action
 
 Route: `/membership`
 
-The Membership page combines the member hero and the entire responsive form. The page handles validation in the browser and shows a confirmation message, but it does not persist or transmit submission data.
+The active Membership route currently displays a Work in Progress page. Its previous frontend-only form remains preserved in source comments but is not rendered or connected to submissions.
 
-![Full Membership page](screenshots/membership.png)
+![Current Membership page](screenshots/membership.png)
 
-## Events — preserved full design
+## Events
 
 Route: `/events`
 
-The preserved Events design presents a configurable featured-event title, schedule, and RSVP action. The active route currently replaces this view with a Work in Progress page until real event data becomes available.
+The active Events route displays a Work in Progress page until current event data and RSVP behavior are ready.
 
-![Preserved Events page design](screenshots/events-full-design.png)
+![Current Events page](screenshots/events.png)
 
-## Initiatives — preserved full design
+## Initiatives
 
 Route: `/initiatives`
 
-The preserved Initiatives design contains a hero, category chips, and a typed card grid for four student programs. The active route currently replaces this directory with a Work in Progress page until the directory is ready to launch.
+The active Initiatives route displays a Work in Progress page. It remains directly accessible for development and future use but is currently omitted from primary navigation.
 
-![Preserved Initiatives page design](screenshots/initiatives-full-design.png)
+![Current Initiatives page](screenshots/initiatives.png)
 
 ## Not Found
 
 Route: any unmatched URL
 
-The fallback page keeps the shared navigation and footer and provides a clear return path to Home.
+The fallback page keeps the shared centered navigation and footer and provides a clear return path to Home.
 
 ![Not Found page](screenshots/not-found.png)
+
+## Preserved design references
+
+The following historical screenshots show the complete Events and Initiatives implementations retained in source comments. They were captured on August 28, 2026 and include the older shared navigation, so they are references rather than current route previews.
+
+### Events — preserved full design
+
+The preserved Events design presents a configurable featured-event title, schedule, and RSVP action.
+
+![Preserved Events page design](screenshots/events-full-design.png)
+
+### Initiatives — preserved full design
+
+The preserved Initiatives design contains a hero, category chips, and a typed card grid for four student programs.
+
+![Preserved Initiatives page design](screenshots/initiatives-full-design.png)
