@@ -1,7 +1,11 @@
 import styles from "./StaticHeroBrand.module.css";
 
-const StaticHeroBrand = () => (
-  <div className={styles.brand}>
+type StaticHeroBrandProps = {
+  animateLines?: boolean;
+};
+
+const StaticHeroBrand = ({ animateLines = false }: StaticHeroBrandProps) => (
+  <div className={styles.brand} data-animate-lines={animateLines}>
     <h1 className={styles.heroTitle} id="home-hero-title">
       <span className={styles.titleTop}>
         <strong>Girls</strong> <span>Who</span>

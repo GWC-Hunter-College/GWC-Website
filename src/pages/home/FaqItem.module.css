@@ -98,6 +98,30 @@
   border-color: var(--focus-ring);
 }
 
+@media (min-width: 901px) {
+  .trigger {
+    min-height: 3.25rem;
+    padding-block: 0.9rem;
+    font-size: clamp(1rem, 1.25vw, 1.1rem);
+  }
+
+  .arrow {
+    font-size: 1.6rem;
+  }
+
+  .answer {
+    padding-right: 3.15rem;
+    padding-bottom: 1.1rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .answer {
+    padding-right: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .item,
   .question,

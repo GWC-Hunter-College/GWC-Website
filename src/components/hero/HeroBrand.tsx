@@ -8,15 +8,20 @@ export type { HeroBrandMode } from "./heroBrandMode";
 
 type HeroBrandProps = {
   mode: HeroBrandMode;
+  animateLines?: boolean;
 };
 
-const HeroBrand = ({ mode }: HeroBrandProps) => {
+const HeroBrand = ({ mode, animateLines = false }: HeroBrandProps) => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const variant = resolveHeroBrandVariant(mode, prefersReducedMotion);
 
   return (
     <div className={styles.frame} data-brand-variant={variant}>
-      {variant === "static" ? <StaticHeroBrand /> : <AnimatedHeroBrand />}
+      {variant === "static" ? (
+        <StaticHeroBrand animateLines={animateLines} />
+      ) : (
+        <AnimatedHeroBrand />
+      )}
     </div>
   );
 };

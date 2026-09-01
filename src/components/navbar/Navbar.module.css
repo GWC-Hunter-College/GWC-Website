@@ -5,20 +5,7 @@
   margin: 0 auto;
   padding: 1.9rem var(--page-gutter);
   align-items: flex-start;
-  justify-content: space-between;
-}
-
-.logoLink {
-  position: relative;
-  z-index: 2;
-  flex: 0 0 auto;
-  border-radius: 50%;
-}
-
-.logo {
-  width: clamp(4.25rem, 6.4vw, 5.7rem);
-  height: clamp(4.25rem, 6.4vw, 5.7rem);
-  object-fit: contain;
+  justify-content: center;
 }
 
 .navigation {

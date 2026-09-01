@@ -1,4 +1,6 @@
 .footer {
+  position: relative;
+  z-index: 1;
   padding: 2.25rem var(--page-gutter) 3.25rem;
   background: var(--color-page);
   color: var(--color-white);

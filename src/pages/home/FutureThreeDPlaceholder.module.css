@@ -21,6 +21,22 @@
   font-weight: 600;
 }
 
+@media (min-width: 901px) {
+  .placeholder {
+    width: min(100%, 18.5rem);
+    min-height: 14.5rem;
+  }
+
+  .placeholder img {
+    width: min(100%, 13.25rem);
+  }
+
+  .placeholder p {
+    margin-top: -1.15rem;
+    font-size: 0.78rem;
+  }
+}
+
 @media (max-width: 760px) {
   .placeholder {
     min-height: 15rem;
