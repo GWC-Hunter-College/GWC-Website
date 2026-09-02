@@ -35,7 +35,7 @@ jobs:
 
       - name: Upload to S3
         run: |
-          aws s3 sync ./dist/ s3://gwc-club-site/main --delete
+          aws s3 sync ./dist/ s3://gwc-club-site/staging --delete
 
       - name: Invalidate CloudFront cache
         run: |
