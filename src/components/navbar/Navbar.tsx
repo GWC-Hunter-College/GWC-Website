@@ -1,23 +1,26 @@
 import { useEffect, useRef, useState } from "react";
-import type { FocusEvent, KeyboardEvent } from "react";
-import { NavLink } from "react-router-dom";
+import type { FocusEvent, KeyboardEvent, MouseEvent } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import Sparkle from "../../assets/shared/sparkle.png";
+import { MEMBERSHIP_LINKTREE_URL } from "../../externalLinks";
 import styles from "./Navbar.module.css";
 
 const navigation = [
   { label: "home", to: "/" },
   { label: "events", to: "/events" },
-  { label: "membership", to: "/membership" },
-];
+  { label: "membership", href: MEMBERSHIP_LINKTREE_URL },
+] as const;
 
 const DESKTOP_NAV_QUERY = "(min-width: 801px)";
 const TOP_VISIBILITY_BOUNDARY = 64;
 const DIRECTION_CHANGE_THRESHOLD = 10;
 
 const Navbar = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const previousPathnameRef = useRef(location.pathname);
   const interactionRef = useRef({
     hasFocus: false,
     isMenuOpen: false,
@@ -121,6 +124,15 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const previousPathname = previousPathnameRef.current;
+    previousPathnameRef.current = location.pathname;
+
+    if (location.pathname === "/" && previousPathname !== "/") {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, [location.pathname]);
+
   const setMenuOpen = (open: boolean) => {
     interactionRef.current.isMenuOpen = open;
     setIsOpen(open);
@@ -157,6 +169,30 @@ const Navbar = () => {
         menuButtonRef.current?.focus({ preventScroll: true });
       });
     }
+  };
+
+  const handleHomeNavigation = (event: MouseEvent<HTMLAnchorElement>) => {
+    handleNavigation();
+
+    const isUnmodifiedPrimaryClick =
+      event.button === 0 &&
+      !event.altKey &&
+      !event.ctrlKey &&
+      !event.metaKey &&
+      !event.shiftKey;
+
+    if (location.pathname !== "/" || !isUnmodifiedPrimaryClick) {
+      return;
+    }
+
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -203,18 +239,28 @@ const Navbar = () => {
       >
         <ul className={styles.navigationList}>
           {navigation.map((item) => (
-            <li className={styles.navigationItem} key={item.to}>
+            <li className={styles.navigationItem} key={item.label}>
               <img className={styles.sparkle} src={Sparkle} alt="" aria-hidden="true" />
-              <NavLink
-                className={({ isActive }) =>
-                  `${styles.navigationLink} ${isActive ? styles.navigationLinkActive : ""}`
-                }
-                to={item.to}
-                end={item.to === "/"}
-                onClick={handleNavigation}
-              >
-                {item.label}
-              </NavLink>
+              {"to" in item ? (
+                <NavLink
+                  className={({ isActive }) =>
+                    `${styles.navigationLink} ${isActive ? styles.navigationLinkActive : ""}`
+                  }
+                  to={item.to}
+                  end={item.to === "/"}
+                  onClick={item.to === "/" ? handleHomeNavigation : handleNavigation}
+                >
+                  {item.label}
+                </NavLink>
+              ) : (
+                <a
+                  className={styles.navigationLink}
+                  href={item.href}
+                  onClick={handleNavigation}
+                >
+                  {item.label}
+                </a>
+              )}
             </li>
           ))}
           <li className={styles.finalSparkle} aria-hidden="true">

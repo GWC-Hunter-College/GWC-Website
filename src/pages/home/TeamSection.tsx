@@ -15,7 +15,23 @@ type MemberCardProps = {
   cardRef?: Ref<HTMLElement>;
 };
 
-const hasText = (value: string | undefined): value is string => Boolean(value?.trim());
+const hasText = (value: string | null | undefined): value is string => Boolean(value?.trim());
+
+const normalizeSocialUrl = (value: string | null | undefined) => {
+  const trimmedValue = value?.trim();
+
+  if (!trimmedValue) {
+    return undefined;
+  }
+
+  try {
+    const url = new URL(trimmedValue);
+
+    return url.protocol === "https:" || url.protocol === "http:" ? url.href : undefined;
+  } catch {
+    return undefined;
+  }
+};
 
 const MemberCard = ({ member, announceChanges = false, cardRef }: MemberCardProps) => {
   const metadata = [
@@ -23,6 +39,12 @@ const MemberCard = ({ member, announceChanges = false, cardRef }: MemberCardProp
     { label: "Major", value: member.major },
     { label: "Year", value: member.year },
     { label: "Tenure", value: member.tenure },
+  ];
+  const linkedinUrl = normalizeSocialUrl(member.linkedinUrl);
+  const discordUrl = normalizeSocialUrl(member.discordUrl);
+  const socialLinks = [
+    ...(linkedinUrl ? [{ label: "LinkedIn", url: linkedinUrl, icon: LinkedInDark }] : []),
+    ...(discordUrl ? [{ label: "Discord", url: discordUrl, icon: DiscordDark }] : []),
   ];
 
   return (
@@ -50,10 +72,22 @@ const MemberCard = ({ member, announceChanges = false, cardRef }: MemberCardProp
         ))}
       </dl>
       {hasText(member.quote) && <blockquote>“{member.quote}”</blockquote>}
-      <div className={styles.cardSocials} aria-hidden="true">
-        <img src={LinkedInDark} alt="" />
-        <img src={DiscordDark} alt="" />
-      </div>
+      {socialLinks.length > 0 && (
+        <div className={styles.cardSocials}>
+          {socialLinks.map(({ label, url, icon }) => (
+            <a
+              className={styles.cardSocialLink}
+              href={url}
+              key={label}
+              aria-label={`${member.name} on ${label} (opens in a new tab)`}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img src={icon} alt="" />
+            </a>
+          ))}
+        </div>
+      )}
     </article>
   );
 };
@@ -119,7 +153,7 @@ const TeamSection = () => {
           onClick={() => setPastLeadershipOpen((isOpen) => !isOpen)}
         >
           <span className={styles.pastLeadershipIcon} aria-hidden="true" />
-          <span className={styles.pastLeadershipLabel}>Past Leadership</span>
+          <span className={styles.pastLeadershipLabel}>Previous E-Board Members</span>
         </button>
       </div>
 
@@ -133,10 +167,10 @@ const TeamSection = () => {
       >
         <div className={styles.pastLeadershipClip}>
           <div className={styles.pastLeadership}>
-            <h3 id={PAST_LEADERSHIP_HEADING_ID}>Past Leadership</h3>
+            <h3 id={PAST_LEADERSHIP_HEADING_ID}>Previous E-Board Members</h3>
             {pastMembers.length === 0 ? (
               <p className={styles.pastLeadershipEmpty}>
-                No past leadership profiles are currently available.
+                No previous E-board member profiles are currently available.
               </p>
             ) : (
               <div className={styles.pastMemberList}>
@@ -146,8 +180,8 @@ const TeamSection = () => {
                       className={styles.pastMemberPhoto}
                       src={member.image}
                       alt={`Portrait of ${member.name}`}
+                      caption={member.name}
                     />
-                    <MemberCard member={member} />
                   </div>
                 ))}
               </div>

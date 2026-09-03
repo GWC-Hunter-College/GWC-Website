@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CollageCenter from "../../assets/home/collage-center.jpg";
 import CollageLeft from "../../assets/home/collage-left.jpg";
 import CollageRight from "../../assets/home/collage-right.jpg";
 import RetroSkyBackground from "../../components/retro-sky-background/RetroSkyBackground";
+import { MEMBERSHIP_LINKTREE_URL } from "../../externalLinks";
 import useInViewPair from "../../hooks/useInViewPair";
 import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import FaqItem from "./FaqItem";
@@ -40,7 +40,6 @@ const collagePhotos = [
 ] satisfies ReadonlyArray<GalleryPhoto & { className: string }>;
 
 const Home = () => {
-  const navigate = useNavigate();
   const aboutSectionRef = useRef<HTMLElement>(null);
   const photoOpenerRef = useRef<HTMLButtonElement | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -82,7 +81,7 @@ const Home = () => {
 
       <HomeHero
         version={HOME_HERO_VERSION}
-        onJoin={() => navigate("/membership")}
+        joinHref={MEMBERSHIP_LINKTREE_URL}
         onLearnMore={scrollToAbout}
       />
 

@@ -39,7 +39,7 @@
   margin-top: clamp(0.75rem, 1.5svh, 1.25rem);
 }
 
-.joinAction > button {
+.joinAction > :is(button, a) {
   min-width: clamp(14rem, 19vw, 18rem);
   min-height: clamp(3.75rem, 6.5vh, 4.6rem);
   min-height: clamp(3.75rem, 6.5svh, 4.6rem);
@@ -117,7 +117,7 @@
 }
 
 @media (min-width: 901px) {
-  .joinAction > button {
+  .joinAction > :is(button, a) {
     min-width: clamp(12.9rem, 17.5vw, 16.5rem);
     min-height: clamp(3.45rem, 6vh, 4.25rem);
     min-height: clamp(3.45rem, 6svh, 4.25rem);
@@ -175,7 +175,7 @@
     padding-block: 0;
   }
 
-  .joinAction > button {
+  .joinAction > :is(button, a) {
     min-height: 3.5rem;
   }
 }
@@ -197,7 +197,7 @@
     margin-top: 0.25rem;
   }
 
-  .joinAction > button {
+  .joinAction > :is(button, a) {
     min-width: 11rem;
     min-height: 3rem;
     font-size: 1.1rem;

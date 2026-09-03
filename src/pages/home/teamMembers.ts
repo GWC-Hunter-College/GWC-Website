@@ -16,6 +16,8 @@ export type TeamMember = {
   year?: string;
   tenure?: string;
   quote?: string;
+  linkedinUrl?: string | null;
+  discordUrl?: string | null;
   image: string;
 };
 
@@ -57,8 +59,8 @@ const fariha: TeamMember = {
   image: member07,
 };
 
-const momota: TeamMember = {
-  name: "Momota",
+const mamota: TeamMember = {
+  name: "Mamota",
   image: member08,
 };
 
@@ -68,7 +70,7 @@ const anthony: TeamMember = {
 };
 
 const kyle: TeamMember = {
-  name: "Kyle Bautista",
+  name: "Kyle",
   image: member10,
 };
 
@@ -80,7 +82,7 @@ export const pastMembers: TeamMember[] = [
   guan,
   sabrina,
   maggie,
-  momota,
+  mamota,
   anthony,
   kyle,
 ];

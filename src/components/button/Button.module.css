@@ -19,6 +19,14 @@
   transform: translateY(-2px);
 }
 
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+}
+
 .primary {
   background: var(--color-accent);
 }

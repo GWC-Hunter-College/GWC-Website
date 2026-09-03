@@ -96,6 +96,11 @@
   object-fit: contain;
 }
 
+.cardSocialLink {
+  display: block;
+  border-radius: 0.25rem;
+}
+
 .prompt {
   margin: 1.8rem auto 0.85rem;
   text-align: center;
@@ -181,6 +186,8 @@
   bottom: 0.7rem;
   left: 0.4rem;
   opacity: 0;
+  font-size: clamp(0.65rem, 1.05vw, 0.75rem);
+  line-height: 1.05;
   pointer-events: none;
   transform: translateY(0.25rem);
   transition: opacity 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -189,7 +196,7 @@
 .pastLeadershipButton:focus-visible .pastLeadershipIcon,
 .pastLeadershipButton[aria-expanded="true"] .pastLeadershipIcon {
   color: rgb(255 255 255 / 82%);
-  transform: translateY(-0.55rem);
+  transform: translateY(-1.2rem);
 }
 
 .pastLeadershipButton:focus-visible .pastLeadershipLabel,
@@ -306,14 +313,15 @@
 
 .pastMemberList {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2rem, 4vw, 3rem);
+  padding: 0.5rem 0.5rem 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .pastMemberProfile {
   display: grid;
+  min-width: 0;
   align-content: start;
-  gap: 1rem;
 }
 
 .pastMemberPhoto {
@@ -326,7 +334,7 @@
   transform: rotate(2deg);
 }
 
-@media (hover: hover) and (pointer: fine) {
+@media (min-width: 801px) and (hover: hover) and (pointer: fine) {
   .memberButton:hover {
     z-index: 3;
   }
@@ -351,7 +359,7 @@
 
   .pastLeadershipButton:hover .pastLeadershipIcon {
     color: rgb(255 255 255 / 82%);
-    transform: translateY(-0.55rem);
+    transform: translateY(-1.2rem);
   }
 
   .pastLeadershipButton:hover .pastLeadershipLabel {
@@ -370,7 +378,7 @@
 
   .pastLeadershipIcon {
     color: rgb(255 255 255 / 82%);
-    transform: translateY(-0.55rem);
+    transform: translateY(-1.2rem);
   }
 
   .pastLeadershipLabel {
@@ -548,7 +556,13 @@
   .pastLeadershipLabel {
     position: static;
     opacity: 1;
+    font-size: 0.95rem;
+    line-height: 1.1;
     transform: none;
+  }
+
+  .pastMemberList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .pastLeadership {
@@ -563,13 +577,13 @@
 
 @media (max-width: 520px) {
   .pastMemberList {
-    max-width: 20rem;
+    max-width: 22rem;
     margin: 0 auto;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .pastMemberPhoto {
-    width: min(100%, 10rem);
+    width: 100%;
   }
 }
 

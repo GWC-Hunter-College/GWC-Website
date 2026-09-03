@@ -7,7 +7,7 @@ export type HomeHeroVersion = "version-1-static" | "version-2-motion";
 
 type HomeHeroProps = {
   version: HomeHeroVersion;
-  onJoin: () => void;
+  joinHref: string;
   onLearnMore: () => void;
 };
 
@@ -25,7 +25,7 @@ const heroVersions: Record<
   },
 };
 
-const HomeHero = ({ version, onJoin, onLearnMore }: HomeHeroProps) => {
+const HomeHero = ({ version, joinHref, onLearnMore }: HomeHeroProps) => {
   const { brandMode, motionEnabled } = heroVersions[version];
 
   return (
@@ -41,7 +41,7 @@ const HomeHero = ({ version, onJoin, onLearnMore }: HomeHeroProps) => {
             <HeroBrand mode={brandMode} animateLines={motionEnabled} />
           </div>
           <div className={styles.joinAction}>
-            <Button variant="light" onClick={onJoin}>
+            <Button href={joinHref} variant="light">
               Join us
             </Button>
           </div>
