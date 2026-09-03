@@ -9,10 +9,11 @@ export type GalleryPhoto = {
 
 type GalleryModalProps = {
   photo: GalleryPhoto | null;
+  returnFocusTo?: HTMLElement | null;
   onClose: () => void;
 };
 
-const GalleryModal = ({ photo, onClose }: GalleryModalProps) => {
+const GalleryModal = ({ photo, returnFocusTo, onClose }: GalleryModalProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
   const lastPhotoRef = useRef<GalleryPhoto | null>(photo);
@@ -34,14 +35,14 @@ const GalleryModal = ({ photo, onClose }: GalleryModalProps) => {
     }
 
     if (isOpen && !dialog.open) {
-      openerRef.current = document.activeElement instanceof HTMLElement
-        ? document.activeElement
-        : null;
+      openerRef.current = returnFocusTo ?? (
+        document.activeElement instanceof HTMLElement ? document.activeElement : null
+      );
       dialog.showModal();
     } else if (!isOpen && dialog.open) {
       dialog.close();
     }
-  }, [isOpen]);
+  }, [isOpen, returnFocusTo]);
 
   useEffect(() => {
     if (!isOpen) {

@@ -26,6 +26,8 @@
 
 html {
   min-width: 320px;
+  scrollbar-gutter: stable;
+  scroll-padding-top: 6.5rem;
   background: var(--color-page);
   scroll-behavior: smooth;
 }
@@ -75,6 +77,12 @@ button {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  html {
+    scroll-padding-top: calc(6.5rem + env(safe-area-inset-top, 0px));
   }
 }
 

@@ -11,6 +11,8 @@
 }
 
 .sun-composition {
+  transform-box: view-box;
+  transform-origin: 855px 530px;
   transform: translateX(90px);
 }
 
@@ -31,15 +33,22 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px), (max-width: 960px) and (max-height: 700px) and (orientation: landscape) {
   .sun-composition {
-    transform: translateX(35px);
+    /* Retain the desktop artwork while giving narrow crops a calmer focal scale. */
+    transform: translateX(35px) scale(0.82);
+  }
+}
+
+@media (max-width: 640px) {
+  .sun-composition {
+    transform: translateX(25px) scale(0.7);
   }
 }
 
 @media (max-width: 520px) {
   .sun-composition {
-    transform: translateX(20px);
+    transform: translateX(20px) scale(0.58);
   }
 }
 </style>

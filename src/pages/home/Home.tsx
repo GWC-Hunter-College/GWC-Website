@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CollageCenter from "../../assets/home/collage-center.jpg";
 import CollageLeft from "../../assets/home/collage-left.jpg";
 import CollageRight from "../../assets/home/collage-right.jpg";
 import RetroSkyBackground from "../../components/retro-sky-background/RetroSkyBackground";
+import { MEMBERSHIP_LINKTREE_URL } from "../../externalLinks";
 import useInViewPair from "../../hooks/useInViewPair";
 import usePrefersReducedMotion from "../../hooks/usePrefersReducedMotion";
 import FaqItem from "./FaqItem";
@@ -40,8 +40,8 @@ const collagePhotos = [
 ] satisfies ReadonlyArray<GalleryPhoto & { className: string }>;
 
 const Home = () => {
-  const navigate = useNavigate();
   const aboutSectionRef = useRef<HTMLElement>(null);
+  const photoOpenerRef = useRef<HTMLButtonElement | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [polaroidsOpen, setPolaroidsOpen] = useState(false);
   const [polaroidHovered, setPolaroidHovered] = useState(false);
@@ -81,7 +81,7 @@ const Home = () => {
 
       <HomeHero
         version={HOME_HERO_VERSION}
-        onJoin={() => navigate("/membership")}
+        joinHref={MEMBERSHIP_LINKTREE_URL}
         onLearnMore={scrollToAbout}
       />
 
@@ -123,7 +123,10 @@ const Home = () => {
                 onMouseLeave={() => setPolaroidHovered(false)}
                 onFocus={() => setPolaroidHovered(true)}
                 onBlur={() => setPolaroidHovered(false)}
-                onClick={() => setSelectedPhoto(photo)}
+                onClick={(event) => {
+                  photoOpenerRef.current = event.currentTarget;
+                  setSelectedPhoto(photo);
+                }}
               >
                 <img src={photo.src} alt="" />
               </button>
@@ -133,7 +136,11 @@ const Home = () => {
         <div className={styles.sectionDivider} ref={bottomBarRef} aria-hidden="true" />
       </section>
 
-      <GalleryModal photo={selectedPhoto} onClose={() => setSelectedPhoto(null)} />
+      <GalleryModal
+        photo={selectedPhoto}
+        returnFocusTo={photoOpenerRef.current}
+        onClose={() => setSelectedPhoto(null)}
+      />
 
       <TeamSection />
 

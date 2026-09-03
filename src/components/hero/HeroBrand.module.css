@@ -27,8 +27,16 @@
   }
 }
 
-@media (max-height: 700px) and (min-width: 761px) {
+@media (max-height: 700px) and (min-width: 961px) {
   .frame {
+    min-height: clamp(15rem, 45vh, 18rem);
     min-height: clamp(15rem, 45svh, 18rem);
+  }
+}
+
+@media (max-width: 960px) and (max-height: 700px) and (orientation: landscape) {
+  .frame {
+    min-height: clamp(9rem, 42vh, 11rem);
+    min-height: clamp(9rem, 42svh, 11rem);
   }
 }

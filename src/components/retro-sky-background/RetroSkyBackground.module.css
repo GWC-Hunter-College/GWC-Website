@@ -14,7 +14,21 @@
   object-position: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px),
+  (max-width: 960px) and (max-height: 700px) and (orientation: landscape) {
+  .background {
+    position: absolute;
+    inset: 0 0 auto;
+    width: 100%;
+    height: var(--home-hero-height);
+  }
+
+  .artwork {
+    object-position: 68% center;
+  }
+}
+
+@media (max-width: 520px) {
   .artwork {
     object-position: 64% center;
   }

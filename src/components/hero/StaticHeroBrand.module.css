@@ -98,13 +98,33 @@
   }
 }
 
-@media (max-height: 700px) and (min-width: 761px) {
+@media (max-height: 700px) and (min-width: 961px) {
   .heroTitle {
+    font-size: clamp(4rem, 15vh, 7rem);
     font-size: clamp(4rem, 15svh, 7rem);
   }
 
   .heroSubtitle {
     margin-top: 0.75rem;
+    font-size: clamp(1.65rem, 5vh, 2.5rem);
     font-size: clamp(1.65rem, 5svh, 2.5rem);
+  }
+}
+
+@media (max-width: 960px) and (max-height: 700px) and (orientation: landscape) {
+  .heroTitle {
+    font-size: clamp(3rem, 14vh, 4.75rem);
+    font-size: clamp(3rem, 14svh, 4.75rem);
+    line-height: 0.8;
+  }
+
+  .titleTop {
+    white-space: nowrap;
+  }
+
+  .heroSubtitle {
+    margin-top: 0.5rem;
+    font-size: clamp(1.35rem, 5vh, 1.75rem);
+    font-size: clamp(1.35rem, 5svh, 1.75rem);
   }
 }

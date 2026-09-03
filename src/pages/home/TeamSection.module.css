@@ -70,7 +70,9 @@
 }
 
 .memberCard dd {
+  min-width: 0;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .memberCard blockquote {
@@ -94,6 +96,11 @@
   object-fit: contain;
 }
 
+.cardSocialLink {
+  display: block;
+  border-radius: 0.25rem;
+}
+
 .prompt {
   margin: 1.8rem auto 0.85rem;
   text-align: center;
@@ -104,9 +111,9 @@
 
 .memberGrid {
   display: grid;
-  max-width: 44rem;
+  max-width: 20rem;
   margin: 0 auto;
-  grid-template-columns: repeat(6, minmax(4.5rem, 1fr));
+  grid-template-columns: repeat(3, minmax(4.5rem, 1fr));
   gap: clamp(0.6rem, 1.5vw, 1rem);
 }
 
@@ -123,10 +130,84 @@
   transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
-.memberPlaceholder {
+.pastLeadershipButton {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  overflow: hidden;
   aspect-ratio: 1;
+  padding: 0.65rem;
+  border: 3px solid transparent;
   border-radius: 1.4rem;
-  background: #d9d9d9;
+  place-items: center;
+  background: #2b292f;
+  color: var(--color-white);
+  box-shadow: 0 0.35rem 0.75rem rgb(9 5 15 / 14%);
+  font-size: clamp(0.7rem, 1.2vw, 0.82rem);
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.pastLeadershipButton[aria-expanded="true"] {
+  border-color: rgb(255 255 255 / 38%);
+}
+
+.pastLeadershipIcon {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: rgb(255 255 255 / 48%);
+  transition: color 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pastLeadershipIcon::before,
+.pastLeadershipIcon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.05rem;
+  height: 2px;
+  background: currentColor;
+  content: "";
+  transform: translate(-50%, -50%);
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pastLeadershipIcon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.pastLeadershipLabel {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 0.7rem;
+  left: 0.4rem;
+  opacity: 0;
+  font-size: clamp(0.65rem, 1.05vw, 0.75rem);
+  line-height: 1.05;
+  pointer-events: none;
+  transform: translateY(0.25rem);
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pastLeadershipButton:focus-visible .pastLeadershipIcon,
+.pastLeadershipButton[aria-expanded="true"] .pastLeadershipIcon {
+  color: rgb(255 255 255 / 82%);
+  transform: translateY(-1.2rem);
+}
+
+.pastLeadershipButton:focus-visible .pastLeadershipLabel,
+.pastLeadershipButton[aria-expanded="true"] .pastLeadershipLabel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pastLeadershipButton[aria-expanded="true"] .pastLeadershipIcon::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg) scaleX(0);
 }
 
 .memberButton img {
@@ -165,21 +246,145 @@
   transition: opacity 160ms ease, transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.memberButton:hover,
-.memberButton:focus-visible {
+.memberSummary {
+  display: none;
+}
+
+.memberButton:focus-visible,
+.pastLeadershipButton:focus-visible {
   z-index: 3;
 }
 
-.memberButton:hover:not(.memberButtonActive) {
-  border-color: var(--color-accent-light);
-  box-shadow: 0 0.55rem 1rem rgb(9 5 15 / 22%);
-  transform: translateY(-0.15rem);
-}
-
-.memberButton:hover .memberName,
 .memberButton:focus-visible .memberName {
   opacity: 1;
   transform: translate(-50%, 0);
+}
+
+.pastLeadershipPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    grid-template-rows 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease,
+    visibility 0s linear 380ms;
+}
+
+.pastLeadershipPanel[data-open="true"] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition:
+    grid-template-rows 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 240ms ease 60ms,
+    visibility 0s;
+}
+
+.pastLeadershipClip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pastLeadership {
+  max-width: 44rem;
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 2px solid rgb(255 255 255 / 22%);
+}
+
+.pastLeadership h3 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  font-style: italic;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.pastLeadershipEmpty {
+  margin: 0;
+  padding: 1rem 1.15rem;
+  border-radius: 0.75rem;
+  background: rgb(255 255 255 / 8%);
+  line-height: 1.5;
+}
+
+.pastMemberList {
+  display: grid;
+  padding: 0.5rem 0.5rem 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.pastMemberProfile {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+}
+
+.pastMemberPhoto {
+  width: min(100%, 12rem);
+  justify-self: center;
+  transform: rotate(-2deg);
+}
+
+.pastMemberProfile:nth-child(even) .pastMemberPhoto {
+  transform: rotate(2deg);
+}
+
+@media (min-width: 801px) and (hover: hover) and (pointer: fine) {
+  .memberButton:hover {
+    z-index: 3;
+  }
+
+  .memberButton:hover:not(.memberButtonActive) {
+    border-color: var(--color-accent-light);
+    box-shadow: 0 0.55rem 1rem rgb(9 5 15 / 22%);
+    transform: translateY(-0.15rem);
+  }
+
+  .memberButton:hover .memberName {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .pastLeadershipButton:hover {
+    z-index: 3;
+    border-color: rgb(255 255 255 / 38%);
+    box-shadow: 0 0.55rem 1rem rgb(9 5 15 / 28%);
+    transform: translateY(-0.15rem);
+  }
+
+  .pastLeadershipButton:hover .pastLeadershipIcon {
+    color: rgb(255 255 255 / 82%);
+    transform: translateY(-1.2rem);
+  }
+
+  .pastLeadershipButton:hover .pastLeadershipLabel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .memberName {
+    max-width: calc(100% - 0.5rem);
+    overflow-wrap: anywhere;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .pastLeadershipIcon {
+    color: rgb(255 255 255 / 82%);
+    transform: translateY(-1.2rem);
+  }
+
+  .pastLeadershipLabel {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (min-width: 901px) {
@@ -240,45 +445,157 @@
   }
 
   .memberGrid {
-    max-width: 40rem;
+    max-width: 20rem;
     gap: clamp(0.55rem, 1.35vw, 0.9rem);
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 800px) {
   .section {
     padding: 2.25rem 1.25rem;
   }
 
+  .section h2 {
+    margin-bottom: 1.75rem;
+    font-size: clamp(2rem, 10vw, 2.75rem);
+    text-align: center;
+  }
+
   .featuredArea {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .selectedPhoto {
-    width: min(78vw, 19rem);
+    width: min(100%, 16rem);
+  }
+
+  .memberCard dl div {
+    flex-wrap: wrap;
+  }
+
+  .memberCard blockquote {
+    min-height: 6rem;
   }
 
   .memberGrid {
-    grid-template-columns: repeat(5, minmax(2.75rem, 1fr));
+    max-width: 34rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 0.875rem;
   }
 
   .memberButton {
-    border-radius: 0.8rem;
+    display: grid;
+    overflow: hidden;
+    aspect-ratio: auto;
+    border-radius: 0.9rem;
+    grid-template-rows: auto auto auto;
+  }
+
+  .memberButtonActive {
+    transform: none;
   }
 
   .memberButton img {
-    border-radius: calc(0.8rem - 3px);
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: calc(0.9rem - 3px) calc(0.9rem - 3px) 0 0;
   }
 
-  .memberPlaceholder {
-    border-radius: 0.8rem;
+  .memberName,
+  .memberButton:hover .memberName,
+  .memberButton:focus-visible .memberName {
+    position: static;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    padding: 0.5rem 0.4rem 0.15rem;
+    border: 0;
+    border-top: 1px solid rgb(9 5 15 / 12%);
+    border-radius: 0;
+    opacity: 1;
+    box-shadow: none;
+    font-size: 0.8rem;
+    transform: none;
+  }
+
+  .memberSummary {
+    display: block;
+    min-width: 0;
+    padding: 0 0.4rem 0.5rem;
+    overflow-wrap: anywhere;
+    background: var(--color-white);
+    color: rgb(9 5 15 / 72%);
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .pastLeadershipButton {
+    display: flex;
+    min-height: 3.5rem;
+    aspect-ratio: auto;
+    border-radius: 0.9rem;
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.65rem;
+    font-size: 0.95rem;
+  }
+
+  .pastLeadershipIcon,
+  .pastLeadershipButton:focus-visible .pastLeadershipIcon,
+  .pastLeadershipButton[aria-expanded="true"] .pastLeadershipIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    transform: none;
+  }
+
+  .pastLeadershipLabel {
+    position: static;
+    opacity: 1;
+    font-size: 0.95rem;
+    line-height: 1.1;
+    transform: none;
+  }
+
+  .pastMemberList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pastLeadership {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .pastLeadership h3 {
+    font-size: clamp(1.6rem, 8vw, 2rem);
+  }
+}
+
+@media (max-width: 520px) {
+  .pastMemberList {
+    max-width: 22rem;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pastMemberPhoto {
+    width: 100%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .memberButton,
-  .memberName {
+  .memberName,
+  .pastLeadershipButton,
+  .pastLeadershipIcon,
+  .pastLeadershipIcon::before,
+  .pastLeadershipIcon::after,
+  .pastLeadershipLabel,
+  .pastLeadershipPanel {
     transition: none;
   }
 }

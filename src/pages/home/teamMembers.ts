@@ -11,35 +11,78 @@ import member10 from "../../assets/team/member-10.png";
 
 export type TeamMember = {
   name: string;
-  major: string;
-  year: string;
-  quote: string;
+  role?: string;
+  major?: string;
+  year?: string;
+  tenure?: string;
+  quote?: string;
+  linkedinUrl?: string | null;
+  discordUrl?: string | null;
   image: string;
 };
 
-export const teamMembers: TeamMember[] = [
-  {
-    name: "Kelly",
-    major: "Computer Science",
-    year: "Senior",
-    quote: "I don’t get paid enough for this.",
-    image: member01,
-  },
-  ...[
-    member02,
-    member03,
-    member04,
-    member05,
-    member06,
-    member07,
-    member08,
-    member09,
-    member10,
-  ].map((image, index) => ({
-    name: `Team member ${index + 2}`,
-    major: "Profile coming soon",
-    year: "Current member",
-    quote: "More about this team member is coming soon.",
-    image,
-  })),
+const kelly: TeamMember = {
+  name: "Kelly Lin",
+  major: "Computer Science",
+  year: "Senior",
+  quote: "I don’t get paid enough for this.",
+  image: member01,
+};
+
+const erina: TeamMember = {
+  name: "Erina",
+  image: member02,
+};
+
+const guan: TeamMember = {
+  name: "Guan",
+  image: member03,
+};
+
+const sabrina: TeamMember = {
+  name: "Sabrina",
+  image: member04,
+};
+
+const maggie: TeamMember = {
+  name: "Maggie",
+  image: member05,
+};
+
+const tahya: TeamMember = {
+  name: "Tahya",
+  image: member06,
+};
+
+const fariha: TeamMember = {
+  name: "Fariha Kha",
+  image: member07,
+};
+
+const mamota: TeamMember = {
+  name: "Mamota",
+  image: member08,
+};
+
+const anthony: TeamMember = {
+  name: "Anthony",
+  image: member09,
+};
+
+const kyle: TeamMember = {
+  name: "Kyle",
+  image: member10,
+};
+
+export const currentMembers: TeamMember[] = [tahya, fariha];
+
+export const pastMembers: TeamMember[] = [
+  kelly,
+  erina,
+  guan,
+  sabrina,
+  maggie,
+  mamota,
+  anthony,
+  kyle,
 ];
