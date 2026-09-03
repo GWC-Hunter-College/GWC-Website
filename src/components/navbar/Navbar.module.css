@@ -85,6 +85,14 @@
   background: var(--color-white);
 }
 
+@media (hover: none), (pointer: coarse) {
+  .navigationLink {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+  }
+}
+
 @media (max-width: 800px) {
   .navbar {
     min-height: 7rem;

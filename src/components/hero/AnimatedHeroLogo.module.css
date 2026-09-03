@@ -123,3 +123,10 @@
 @media (max-width: 420px) {
   .visualLockup { width: min(100%, 23rem); }
 }
+
+@media (max-width: 960px) and (max-height: 700px) and (orientation: landscape) {
+  .visualLockup {
+    width: min(100%, clamp(14rem, 68vh, 18rem));
+    width: min(100%, clamp(14rem, 68svh, 18rem));
+  }
+}

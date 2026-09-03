@@ -3,7 +3,8 @@
   inset: 0;
   width: 100vw;
   max-width: none;
-  height: 100dvh;
+  height: 100vh;
+  height: 100svh;
   max-height: none;
   margin: 0;
   padding: clamp(1rem, 3vw, 2rem);
@@ -38,7 +39,8 @@
 .image {
   width: auto;
   height: auto;
-  max-height: calc(100dvh - 8rem);
+  max-height: calc(100vh - 8rem);
+  max-height: calc(100svh - 8rem);
   object-fit: contain;
   background: #d9d9d9;
 }
@@ -85,7 +87,8 @@
   .frame[data-orientation="portrait"] .image,
   .frame[data-orientation="landscape"] .image {
     max-width: calc(100vw - 4.5rem);
-    max-height: calc(100dvh - 7.5rem);
+    max-height: calc(100vh - 7.5rem);
+    max-height: calc(100svh - 7.5rem);
   }
 
   .closeButton {

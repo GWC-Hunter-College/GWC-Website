@@ -42,6 +42,7 @@ const collagePhotos = [
 const Home = () => {
   const navigate = useNavigate();
   const aboutSectionRef = useRef<HTMLElement>(null);
+  const photoOpenerRef = useRef<HTMLButtonElement | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [polaroidsOpen, setPolaroidsOpen] = useState(false);
   const [polaroidHovered, setPolaroidHovered] = useState(false);
@@ -123,7 +124,10 @@ const Home = () => {
                 onMouseLeave={() => setPolaroidHovered(false)}
                 onFocus={() => setPolaroidHovered(true)}
                 onBlur={() => setPolaroidHovered(false)}
-                onClick={() => setSelectedPhoto(photo)}
+                onClick={(event) => {
+                  photoOpenerRef.current = event.currentTarget;
+                  setSelectedPhoto(photo);
+                }}
               >
                 <img src={photo.src} alt="" />
               </button>
@@ -133,7 +137,11 @@ const Home = () => {
         <div className={styles.sectionDivider} ref={bottomBarRef} aria-hidden="true" />
       </section>
 
-      <GalleryModal photo={selectedPhoto} onClose={() => setSelectedPhoto(null)} />
+      <GalleryModal
+        photo={selectedPhoto}
+        returnFocusTo={photoOpenerRef.current}
+        onClose={() => setSelectedPhoto(null)}
+      />
 
       <TeamSection />
 

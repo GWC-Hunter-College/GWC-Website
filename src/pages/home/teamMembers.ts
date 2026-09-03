@@ -17,7 +17,7 @@ export type TeamMember = {
   image: string;
 };
 
-export const teamMembers: TeamMember[] = [
+export const currentMembers: TeamMember[] = [
   {
     name: "Kelly",
     major: "Computer Science",
@@ -43,3 +43,5 @@ export const teamMembers: TeamMember[] = [
     image,
   })),
 ];
+
+export const pastMembers: TeamMember[] = [];

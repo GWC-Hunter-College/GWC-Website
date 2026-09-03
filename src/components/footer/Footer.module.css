@@ -28,7 +28,7 @@
 .copyright {
   max-width: 32rem;
   margin: 0 auto 1rem;
-  font-size: clamp(0.75rem, 1.5vw, 1.15rem);
+  font-size: clamp(0.875rem, 1.5vw, 1.15rem);
   line-height: 1.35;
 }
 
