@@ -106,9 +106,9 @@
 
 .memberGrid {
   display: grid;
-  max-width: 44rem;
+  max-width: 20rem;
   margin: 0 auto;
-  grid-template-columns: repeat(6, minmax(4.5rem, 1fr));
+  grid-template-columns: repeat(3, minmax(4.5rem, 1fr));
   gap: clamp(0.6rem, 1.5vw, 1rem);
 }
 
@@ -128,17 +128,15 @@
 .pastLeadershipButton {
   position: relative;
   z-index: 1;
-  display: flex;
+  display: grid;
+  overflow: hidden;
   aspect-ratio: 1;
   padding: 0.65rem;
   border: 3px solid transparent;
   border-radius: 1.4rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  background: #d9d9d9;
-  color: var(--color-surface);
+  place-items: center;
+  background: #2b292f;
+  color: var(--color-white);
   box-shadow: 0 0.35rem 0.75rem rgb(9 5 15 / 14%);
   font-size: clamp(0.7rem, 1.2vw, 0.82rem);
   font-weight: 800;
@@ -149,19 +147,60 @@
 }
 
 .pastLeadershipButton[aria-expanded="true"] {
-  border-color: var(--color-accent);
+  border-color: rgb(255 255 255 / 38%);
 }
 
 .pastLeadershipIcon {
-  display: grid;
-  width: 2rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  place-items: center;
-  background: var(--color-accent);
-  font-size: 1.45rem;
-  font-weight: 700;
-  line-height: 1;
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: rgb(255 255 255 / 48%);
+  transition: color 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pastLeadershipIcon::before,
+.pastLeadershipIcon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.05rem;
+  height: 2px;
+  background: currentColor;
+  content: "";
+  transform: translate(-50%, -50%);
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pastLeadershipIcon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.pastLeadershipLabel {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 0.7rem;
+  left: 0.4rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.25rem);
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pastLeadershipButton:focus-visible .pastLeadershipIcon,
+.pastLeadershipButton[aria-expanded="true"] .pastLeadershipIcon {
+  color: rgb(255 255 255 / 82%);
+  transform: translateY(-0.55rem);
+}
+
+.pastLeadershipButton:focus-visible .pastLeadershipLabel,
+.pastLeadershipButton[aria-expanded="true"] .pastLeadershipLabel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pastLeadershipButton[aria-expanded="true"] .pastLeadershipIcon::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg) scaleX(0);
 }
 
 .memberButton img {
@@ -214,6 +253,34 @@
   transform: translate(-50%, 0);
 }
 
+.pastLeadershipPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    grid-template-rows 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease,
+    visibility 0s linear 380ms;
+}
+
+.pastLeadershipPanel[data-open="true"] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition:
+    grid-template-rows 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 240ms ease 60ms,
+    visibility 0s;
+}
+
+.pastLeadershipClip {
+  min-height: 0;
+  overflow: hidden;
+}
+
 .pastLeadership {
   max-width: 44rem;
   margin: clamp(2rem, 4vw, 3rem) auto 0;
@@ -239,17 +306,32 @@
 
 .pastMemberList {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(2rem, 4vw, 3rem);
 }
 
+.pastMemberProfile {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.pastMemberPhoto {
+  width: min(100%, 12rem);
+  justify-self: center;
+  transform: rotate(-2deg);
+}
+
+.pastMemberProfile:nth-child(even) .pastMemberPhoto {
+  transform: rotate(2deg);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .memberButton:hover,
-  .pastLeadershipButton:hover {
+  .memberButton:hover {
     z-index: 3;
   }
 
-  .memberButton:hover:not(.memberButtonActive),
-  .pastLeadershipButton:hover {
+  .memberButton:hover:not(.memberButtonActive) {
     border-color: var(--color-accent-light);
     box-shadow: 0 0.55rem 1rem rgb(9 5 15 / 22%);
     transform: translateY(-0.15rem);
@@ -259,6 +341,23 @@
     opacity: 1;
     transform: translate(-50%, 0);
   }
+
+  .pastLeadershipButton:hover {
+    z-index: 3;
+    border-color: rgb(255 255 255 / 38%);
+    box-shadow: 0 0.55rem 1rem rgb(9 5 15 / 28%);
+    transform: translateY(-0.15rem);
+  }
+
+  .pastLeadershipButton:hover .pastLeadershipIcon {
+    color: rgb(255 255 255 / 82%);
+    transform: translateY(-0.55rem);
+  }
+
+  .pastLeadershipButton:hover .pastLeadershipLabel {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -267,6 +366,16 @@
     overflow-wrap: anywhere;
     opacity: 1;
     transform: translate(-50%, 0);
+  }
+
+  .pastLeadershipIcon {
+    color: rgb(255 255 255 / 82%);
+    transform: translateY(-0.55rem);
+  }
+
+  .pastLeadershipLabel {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -328,7 +437,7 @@
   }
 
   .memberGrid {
-    max-width: 40rem;
+    max-width: 20rem;
     gap: clamp(0.55rem, 1.35vw, 0.9rem);
   }
 }
@@ -416,18 +525,30 @@
   }
 
   .pastLeadershipButton {
+    display: flex;
     min-height: 3.5rem;
     aspect-ratio: auto;
     border-radius: 0.9rem;
     grid-column: 1 / -1;
     flex-direction: row;
+    justify-content: center;
     gap: 0.65rem;
     font-size: 0.95rem;
   }
 
-  .pastLeadershipIcon {
-    width: 1.75rem;
-    font-size: 1.25rem;
+  .pastLeadershipIcon,
+  .pastLeadershipButton:focus-visible .pastLeadershipIcon,
+  .pastLeadershipButton[aria-expanded="true"] .pastLeadershipIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    transform: none;
+  }
+
+  .pastLeadershipLabel {
+    position: static;
+    opacity: 1;
+    transform: none;
   }
 
   .pastLeadership {
@@ -440,10 +561,27 @@
   }
 }
 
+@media (max-width: 520px) {
+  .pastMemberList {
+    max-width: 20rem;
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+  }
+
+  .pastMemberPhoto {
+    width: min(100%, 10rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .memberButton,
   .memberName,
-  .pastLeadershipButton {
+  .pastLeadershipButton,
+  .pastLeadershipIcon,
+  .pastLeadershipIcon::before,
+  .pastLeadershipIcon::after,
+  .pastLeadershipLabel,
+  .pastLeadershipPanel {
     transition: none;
   }
 }
