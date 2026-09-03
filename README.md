@@ -1,8 +1,8 @@
 # Girls Who Code at Hunter College
 
-The Girls Who Code at Hunter College website is a responsive React single-page application for introducing the club, presenting its community, and collecting prospective member interest.
+The Girls Who Code at Hunter College website is a responsive React single-page application for introducing the club, presenting its community, and guiding prospective members toward future participation.
 
-This repository contains the frontend application. Home and Membership are fully presented, while Events and Initiatives intentionally display Work in Progress pages. Their complete designs remain preserved in their page source files for future use.
+This repository contains the frontend application. The redesigned Home page is fully presented, while Membership, Events, and Initiatives intentionally display Work in Progress pages. Their previous implementations remain preserved in comments in their page source files for future use.
 
 ## Technology
 
@@ -40,10 +40,10 @@ The build command type-checks the project and writes the production bundle to `d
 
 | Route | Page | Status |
 | --- | --- | --- |
-| `/` | Home | Available |
-| `/membership` | Membership | Available; the form is frontend-only |
-| `/events` | Events | Work in Progress placeholder |
-| `/initiatives` | Initiatives | Work in Progress placeholder |
+| `/` | Home | Available; redesigned landing experience |
+| `/membership` | Membership | Work in Progress placeholder; the prior frontend form is retained in source comments |
+| `/events` | Events | Work in Progress placeholder; the prior featured-event design is retained in source comments |
+| `/initiatives` | Initiatives | Work in Progress placeholder; directly routable but omitted from primary navigation |
 | Any unmatched path | Not Found | Available |
 
 ## Documentation
@@ -59,9 +59,11 @@ The build command type-checks the project and writes the production bundle to `d
 
 ## Current limitations
 
-- The Membership form confirms submission only in the browser and does not send or store data.
+- The Join Us action currently opens the Work in Progress Membership route; no active membership form or submission flow is connected.
+- Events, Membership, and Initiatives are hidden behind temporary placeholders while their prior implementations remain preserved in their page source files.
+- The team directory still needs the current member list and complete profile data; only the first profile currently has final metadata.
+- The Home introduction contains a placeholder for planned interactive three-dimensional artwork.
 - Social icons are presentational and do not yet link to club accounts.
-- Events and Initiatives are hidden behind temporary placeholders while their implementations remain preserved in their page source files.
 - Infrastructure configuration lives outside this repository; the repository contains deployment workflows only.
 
 ## License
