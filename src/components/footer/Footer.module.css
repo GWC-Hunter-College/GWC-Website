@@ -1,0 +1,62 @@
+.footer {
+  position: relative;
+  z-index: 1;
+  padding: 2.25rem var(--page-gutter) 3.25rem;
+  background: var(--color-page);
+  color: var(--color-white);
+}
+
+.inner {
+  display: grid;
+  width: min(100%, var(--content-width));
+  margin: 0 auto;
+  grid-template-columns: 8.25rem 1fr 8.25rem;
+  align-items: end;
+}
+
+.logo {
+  width: 8.25rem;
+  height: 8.25rem;
+  object-fit: contain;
+}
+
+.details {
+  grid-column: 2;
+  text-align: center;
+}
+
+.copyright {
+  max-width: 32rem;
+  margin: 0 auto 1rem;
+  font-size: clamp(0.875rem, 1.5vw, 1.15rem);
+  line-height: 1.35;
+}
+
+.socialList {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  gap: 0.7rem;
+  list-style: none;
+}
+
+.socialIcon {
+  width: clamp(2.5rem, 4.6vw, 4.1rem);
+  height: clamp(2.5rem, 4.6vw, 4.1rem);
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .logo {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}

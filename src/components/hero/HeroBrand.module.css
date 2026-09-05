@@ -1,0 +1,42 @@
+.frame {
+  display: grid;
+  width: 100%;
+  min-height: clamp(23rem, 34vw, 29rem);
+  place-items: center;
+}
+
+.frame > * {
+  grid-area: 1 / 1;
+}
+
+@media (min-width: 901px) {
+  .frame {
+    min-height: clamp(21.25rem, 31.25vw, 26.75rem);
+  }
+}
+
+@media (max-width: 820px) {
+  .frame {
+    min-height: 18rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .frame {
+    min-height: 15rem;
+  }
+}
+
+@media (max-height: 700px) and (min-width: 961px) {
+  .frame {
+    min-height: clamp(15rem, 45vh, 18rem);
+    min-height: clamp(15rem, 45svh, 18rem);
+  }
+}
+
+@media (max-width: 960px) and (max-height: 700px) and (orientation: landscape) {
+  .frame {
+    min-height: clamp(9rem, 42vh, 11rem);
+    min-height: clamp(9rem, 42svh, 11rem);
+  }
+}

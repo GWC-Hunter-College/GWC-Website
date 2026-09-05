@@ -1,0 +1,48 @@
+.placeholder {
+  display: flex;
+  width: min(100%, 20.5rem);
+  min-height: 16rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.placeholder img {
+  width: min(100%, 14.5rem);
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.placeholder p {
+  margin: -1.25rem 0 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+@media (min-width: 901px) {
+  .placeholder {
+    width: min(100%, 18.5rem);
+    min-height: 14.5rem;
+  }
+
+  .placeholder img {
+    width: min(100%, 13.25rem);
+  }
+
+  .placeholder p {
+    margin-top: -1.15rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .placeholder {
+    min-height: 15rem;
+  }
+
+  .placeholder img {
+    width: 12rem;
+  }
+}

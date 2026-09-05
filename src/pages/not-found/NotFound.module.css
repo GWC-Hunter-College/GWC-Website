@@ -1,0 +1,40 @@
+.page {
+  display: flex;
+  min-height: 75vh;
+  padding: 12rem var(--page-gutter) 6rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-page);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-accent-light);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.page h1 {
+  margin: 0.25rem 0;
+  font-size: clamp(3rem, 9vw, 7rem);
+  font-style: italic;
+  line-height: 1;
+}
+
+.page p:not(.eyebrow) {
+  margin: 1rem 0 2rem;
+  font-size: 1.1rem;
+}
+
+.link {
+  padding: 1rem 1.5rem;
+  border-radius: 0.65rem;
+  background: var(--color-accent);
+  color: var(--color-black);
+  font-style: italic;
+  font-weight: 800;
+  text-decoration: none;
+}
