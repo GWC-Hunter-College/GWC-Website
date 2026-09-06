@@ -63,8 +63,17 @@ engines can read each page's indexing directive.
 `public/social-preview.png` is a 1200×630 PNG captured from the actual homepage.
 The navbar, Join Us action, and scroll cue were hidden with temporary browser CSS
 for capture, and the hero was centered in the frame. No capture styles are part
-of the application. The image is pending visual approval and is not referenced
-by Open Graph or Twitter metadata. Google Analytics is not installed.
+of the application. The approved image is referenced by Open Graph and Twitter/X large-image card
+metadata in `index.html`, using the absolute production URL
+`https://girlswhocodehunter.org/social-preview.png`. These shared site-preview
+tags are in the initial HTML for crawlers that do not run JavaScript. The existing
+`RouteMetadata` component continues to manage route-specific search indexing and
+the homepage canonical. Google Analytics is not installed.
+
+The browser icon uses the existing circular GWC @ Hunter logo in
+`public/logo.png`. `public/favicon.ico` contains 16×16, 32×32, and 48×48 versions;
+`public/apple-touch-icon.png` is 180×180. Both were resized from the original
+transparent logo without modifying it. `index.html` declares both icons.
 
 ## Documentation
 
