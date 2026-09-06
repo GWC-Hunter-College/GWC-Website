@@ -46,6 +46,26 @@ The build command type-checks the project and writes the production bundle to `d
 | `/initiatives` | Initiatives | Work in Progress placeholder; directly routable but omitted from primary navigation |
 | Any unmatched path | Not Found | Available |
 
+## SEO and social preview
+
+The production canonical homepage is `https://girlswhocodehunter.org/`.
+`index.html` provides the site title, chapter description, crawl directive, and
+homepage canonical. `RouteMetadata` keeps the homepage indexable and marks the
+Work in Progress and Not Found routes `noindex, follow` after React renders.
+It removes the homepage canonical on those routes and restores it on navigation
+home. Crawlers must render JavaScript to see these route-specific directives.
+
+Vite copies `public/robots.txt` and `public/sitemap.xml` to the build root. The
+sitemap currently includes only `/`; add the secondary routes and update their
+metadata when their real content is ready. Crawling remains allowed so search
+engines can read each page's indexing directive.
+
+`public/social-preview.png` is a 1200×630 PNG captured from the actual homepage.
+The navbar, Join Us action, and scroll cue were hidden with temporary browser CSS
+for capture, and the hero was centered in the frame. No capture styles are part
+of the application. The image is pending visual approval and is not referenced
+by Open Graph or Twitter metadata. Google Analytics is not installed.
+
 ## Documentation
 
 - [Application architecture and components](docs/ARCHITECTURE.md)

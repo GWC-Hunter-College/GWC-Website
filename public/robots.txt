@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://girlswhocodehunter.org/sitemap.xml
