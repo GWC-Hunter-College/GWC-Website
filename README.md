@@ -46,6 +46,35 @@ The build command type-checks the project and writes the production bundle to `d
 | `/initiatives` | Initiatives | Work in Progress placeholder; directly routable but omitted from primary navigation |
 | Any unmatched path | Not Found | Available |
 
+## SEO and social preview
+
+The production canonical homepage is `https://girlswhocodehunter.org/`.
+`index.html` provides the site title, chapter description, crawl directive, and
+homepage canonical. `RouteMetadata` keeps the homepage indexable and marks the
+Work in Progress and Not Found routes `noindex, follow` after React renders.
+It removes the homepage canonical on those routes and restores it on navigation
+home. Crawlers must render JavaScript to see these route-specific directives.
+
+Vite copies `public/robots.txt` and `public/sitemap.xml` to the build root. The
+sitemap currently includes only `/`; add the secondary routes and update their
+metadata when their real content is ready. Crawling remains allowed so search
+engines can read each page's indexing directive.
+
+`public/social-preview.png` is a 1200×630 PNG captured from the actual homepage.
+The navbar, Join Us action, and scroll cue were hidden with temporary browser CSS
+for capture, and the hero was centered in the frame. No capture styles are part
+of the application. The approved image is referenced by Open Graph and Twitter/X large-image card
+metadata in `index.html`, using the absolute production URL
+`https://girlswhocodehunter.org/social-preview.png`. These shared site-preview
+tags are in the initial HTML for crawlers that do not run JavaScript. The existing
+`RouteMetadata` component continues to manage route-specific search indexing and
+the homepage canonical. Google Analytics is not installed.
+
+The browser icon uses the existing circular GWC @ Hunter logo in
+`public/logo.png`. `public/favicon.ico` contains 16×16, 32×32, and 48×48 versions;
+`public/apple-touch-icon.png` is 180×180. Both were resized from the original
+transparent logo without modifying it. `index.html` declares both icons.
+
 ## Documentation
 
 - [Application architecture and components](docs/ARCHITECTURE.md)
