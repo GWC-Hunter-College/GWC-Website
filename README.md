@@ -68,12 +68,32 @@ metadata in `index.html`, using the absolute production URL
 `https://girlswhocodehunter.org/social-preview.png`. These shared site-preview
 tags are in the initial HTML for crawlers that do not run JavaScript. The existing
 `RouteMetadata` component continues to manage route-specific search indexing and
-the homepage canonical. Google Analytics is not installed.
+the homepage canonical.
 
 The browser icon uses the existing circular GWC @ Hunter logo in
 `public/logo.png`. `public/favicon.ico` contains 16×16, 32×32, and 48×48 versions;
 `public/apple-touch-icon.png` is 180×180. Both were resized from the original
 transparent logo without modifying it. `index.html` declares both icons.
+
+## Google Analytics
+
+`src/main.tsx` calls `initializeGoogleAnalytics` once, outside React rendering.
+`src/analytics/googleAnalytics.ts` loads GA4 (`G-JPC9PNCJ87`) only for a production
+build running on exactly `girlswhocodehunter.org` or `www.girlswhocodehunter.org`.
+The hostname check runs before creating globals or loading Google's script.
+Localhost, staging/CloudFront URLs, and preview hostnames load no analytics;
+development and test modes are also disabled. The public Measurement ID is
+committed intentionally. No workflow configuration or secrets are required.
+
+GA4's initial configuration records the initial page view. React Router uses the
+History API, so [Enhanced Measurement](https://developers.google.com/analytics/devguides/collection/ga4/single-page-applications)
+handles subsequent page views. Enable **Page loads** and **Page changes based on
+browser history events** in the web stream's Enhanced Measurement settings. No
+custom route-change events or Google Tag Manager container are installed.
+
+Run analytics guard tests with `npm test`. These use a mock browser and make no
+Google requests. After deployment, use GA4 DebugView/Realtime to verify collection
+and the stream settings; local tests do not verify receipt by Google.
 
 ## Documentation
 
