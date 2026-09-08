@@ -4,7 +4,8 @@ import member03 from "../../assets/team/member-03.png";
 import member04 from "../../assets/team/member-04.png";
 import member05 from "../../assets/team/member-05.png";
 import member06 from "../../assets/team/member-06.png";
-import member07 from "../../assets/team/member-07.png";
+import farihaPhoto from "../../assets/team/image - Fariha Kha.jpeg";
+import shithilaPhoto from "../../assets/team/IMG_0684 - Shithila Urshi.jpeg";
 import member08 from "../../assets/team/member-08.png";
 import member09 from "../../assets/team/member-09.png";
 import member10 from "../../assets/team/member-10.png";
@@ -56,7 +57,20 @@ const tahya: TeamMember = {
 
 const fariha: TeamMember = {
   name: "Fariha Kha",
-  image: member07,
+  major: "Computer Science",
+  year: "Senior",
+  quote: "Don't forget to smile!",
+  linkedinUrl: "https://www.linkedin.com/in/fariha-kha/",
+  image: farihaPhoto,
+};
+
+const shithila: TeamMember = {
+  name: "Shithila Urshi",
+  major: "Computer Science",
+  year: "Senior",
+  quote: "everything has one end except bananas which have two",
+  linkedinUrl: "https://www.linkedin.com/in/shithila-urshi?trk=contact-info",
+  image: shithilaPhoto,
 };
 
 const mamota: TeamMember = {
@@ -74,7 +88,7 @@ const kyle: TeamMember = {
   image: member10,
 };
 
-export const currentMembers: TeamMember[] = [tahya, fariha];
+export const currentMembers: TeamMember[] = [tahya, fariha, shithila];
 
 export const pastMembers: TeamMember[] = [
   kelly,
